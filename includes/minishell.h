@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/08/10 16:04:33 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/07 14:43:55 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,53 @@
 # define MINISHELL_H
 
 /*
-* INCLUDES	
+**  START DEFINES
+*/
+
+# ifndef READLINE_LIBRARY
+#  define READLINE_LIBRARY
+# endif
+
+# ifndef READLINE_PATH
+#  define READLINE_PATH "/usr/local/opt/readline/include/readline/readline.h"
+# endif
+
+# ifndef HISTORY_PATH
+#  define HISTORY_PATH "/usr/local/opt/readline/include/readline/history.h"
+# endif
+
+/*
+**  END DEFINES
 */
 
 /*
-* CUSTOM INCLUDES	
+**  START STANDARD INCLUDES	
+*/
+
+/*
+**  END STANDARD INCLUDES	
+*/
+
+/*
+**  START CUSTOM INCLUDES	
 */
 
 # include "../libft/libft.h"
+# include READLINE_PATH
+# include HISTORY_PATH
+
+# include "minishell_shell_struct.h"
+
+# include "minishell_shell_func.h"
 
 /*
-* STRUCTS	
+**  END CUSTOM INCLUDES	
 */
+
+/*
+**  Main function.
+**  ./main.c
+*/
+int	main(int argc, char **argv, char **env);
 
 #endif

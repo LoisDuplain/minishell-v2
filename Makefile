@@ -29,11 +29,17 @@ GCC					=	gcc
 FLAGS				=	-Wall -Wextra -Werror -O3 -Ofast -flto -march=native -ffast-math
 LIBFT_PATH			=	./libft
 
+# If brew formulae are not installed in the default folder on your computer, you can choose one
+# of these solutions:
+#
+# 1	-	Change the BREW_PATH variable value below
+# 2	-	Create a file called "brew.mk" in "minishell-v2" folder and write it into:
+#		BREW_PATH = your custom brew formulaes path
 BREW_PATH			=	/usr/local/opt
 -include brew.mk
 
 INCLUDES_PATH		=	./includes
-INCLUDES			+=	$(BREW_PATH)/readline/include/readline
+BREW_INCLUDES_PATH	=	$(BREW_PATH)/readline/include
 
 OBJS				=	$(SOURCES:.c=.o)
 
@@ -43,8 +49,17 @@ all:	$(NAME)
 
 #	How to convert .c in .o
 %.o:	%.c $(LIBFT_PATH)/libft.a $(INCLUDES)
-	@$(GCC) $(FLAGS) -I $(INCLUDES_PATH) -c $< -o $@
-	@printf "\033[2K\r$(BLUE)$(NAME)$(RESET)$(BLUE): $(PURPLE)$<$(RESET)"
+#	Compile
+	@$(GCC)																	\
+	$(FLAGS)																\
+	-I $(INCLUDES_PATH)														\
+	-I $(BREW_INCLUDES_PATH)												\
+	-D READLINE_PATH=\"$(BREW_PATH)/readline/include/readline/readline.h\"	\
+	-D HISTORY_PATH=\"$(BREW_PATH)/readline/include/readline/history.h\"	\
+	-c $<																	\
+	-o $@
+#	Print end of compilation
+	@printf "\033[2K\r$(BLUE)$(NAME)$(NO_COLOR)$(BLUE): $(PURPLE)$<$(NO_COLOR)"
 
 #	Compile libft.a
 $(LIBFT_PATH)/libft.a:
@@ -52,31 +67,55 @@ $(LIBFT_PATH)/libft.a:
 
 #	Compile minishell program
 $(NAME):	$(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
-	@$(GCC) -L $(BREW_PATH)/readline/lib -l readline.8.1 $(LIBFT_PATH)/libft.a $(FLAGS) -I $(INCLUDES_PATH) $(OBJS) -o $(NAME)
-	@printf "\033[2K\r$(BLUE)$(NAME)$(RESET)$(BLUE): $(GREEN)Compiled [√]$(RESET)\n"
+#	Compile command
+	@$(GCC)									\
+	-L $(BREW_PATH)/readline/lib			\
+	-l readline.8.1							\
+	$(LIBFT_PATH)/libft.a					\
+	$(FLAGS)								\
+	-I $(INCLUDES_PATH)						\
+	-I $(BREW_INCLUDES_PATH)				\
+	$(OBJS)									\
+	-o $(NAME)
+#	Print end of compilation
+	@printf "\033[2K\r$(BLUE)$(NAME)$(NO_COLOR)$(BLUE): $(GREEN)Compiled [√]$(NO_COLOR)\n"
 
 #	Clean project
+oclean:
+	@$(RM) $(OBJS)
+	@printf "$(BLUE)$(NAME): $(LIGHT_RED)Cleaning all .o in current project.\n$(NO_COLOR)"
+
 #	Clean
 clean:
 	$(MAKE) -C $(LIBFT_PATH) clean
 	@$(RM) $(OBJS)
-	@printf "$(BLUE)$(NAME): $(LIGHT_RED)Cleaning all .o in project.\n$(RESET)"
+	@printf "$(BLUE)$(NAME): $(LIGHT_RED)Cleaning all .o in project and libraries.\n$(NO_COLOR)"
 
 #	Full clean
 fclean:		clean
 	$(MAKE) -C $(LIBFT_PATH) fclean
 	@$(RM) $(NAME)
-	@printf "$(BLUE)$(NAME): $(RED)Cleaning compiled programs $(NAME).\n$(RESET)"
+	@printf "$(BLUE)$(NAME): $(RED)Cleaning compiled programs $(NAME).\n$(NO_COLOR)"
 
 #	Recompile all
 re:		fclean all
 
+#	Clean old .o - list sources and headers - compile - run
+r:	oclean gmk all
+	@$(MAKE) oclean
+	./minishell
+
+#	Clean old .o - list sources and headers - compile - run with leaks command
+rl:	oclean gmk all
+	@$(MAKE) oclean
+	leaks --atExit -- ./minishell
+
 #	Check norminette
 norminette: clean
-	@printf "$(BLUE)$(NAME): $(GREEN)norminette -> sources\n$(RESET)"
+	@printf "$(BLUE)$(NAME): $(GREEN)norminette -> sources\n$(NO_COLOR)"
 	@norminette sources
 	@echo " "
-	@printf "$(BLUE)$(NAME): $(GREEN)norminette -> includes\n$(RESET)"
+	@printf "$(BLUE)$(NAME): $(GREEN)norminette -> includes\n$(NO_COLOR)"
 	@norminette includes
 
 #	Prepare to push project
@@ -86,9 +125,11 @@ end:
 	@make all
 	@make norminette
 	@make fclean
-	@printf "$(BLUE)$(NAME): $(LIGHT_CYAN)Prepared to be pushed.\n$(RESET)"
+	@printf "$(BLUE)$(NAME): $(LIGHT_CYAN)Prepared to be pushed.\n$(NO_COLOR)"
 
 #	Generate .mk (Makefile includes)
 gmk:
 	@find $(INCLUDES_PATH) -type f -name '*.h' | sed 's/^/INCLUDES += /' > includes.mk
 	@find sources -type f -name '*.c' ! -path "sources/program/*" | sed 's/^/SOURCES += /' > sources.mk
+
+.PHONY:	all oclean clean fclean re r rl norminette end gmk
