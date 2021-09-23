@@ -1,4 +1,6 @@
 .vscode/
 best-libft/
+*.o
+*.a
 brew.mk
 minishell
