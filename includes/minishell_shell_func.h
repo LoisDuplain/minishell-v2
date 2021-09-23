@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_shell_func.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:34:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 15:50:51 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:21:16 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,11 @@ void	*destroy_shell(t_shell **shell);
 **	./shell/update_prompt.c
 */
 void	update_prompt(t_shell *shell);
+
+/*
+**	Free previous allocated line string and set the new one.
+**	./shell/set_line.c
+*/
+void	set_line(t_shell *shell, char *line);
 
 #endif

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_env_value.c                                  :+:      :+:    :+:   */
+/*   set_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 17:16:22 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 17:16:44 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/23 21:19:03 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/23 21:19:46 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset_env_value(t_shell *shell, char *key)
+void	set_line(t_shell *shell, char *line)
 {
-	
+	free(shell->line);
+	shell->line = line;
 }

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_env_value.c                                    :+:      :+:    :+:   */
+/*   env_var_exists.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 20:18:51 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 17:17:38 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/23 22:47:35 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/23 22:54:17 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* void	set_env_value(char **env, char *key, char *value)
+t_bool	env_var_exists(t_shell *shell, char *key)
 {
-	size_t	line_index;
-	size_t	char_index;
+	char	*env_var_value;
 
-	line_index = 0;
-	while (env[line_index] != NULL)
-	{
-		line_index++;
-	}
-} */
+	env_var_value = get_env_var(shell, key);
+	if (env_var_value == NULL)
+		return (FALSE);
+	free(env_var_value);
+	return (TRUE);
+}

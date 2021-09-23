@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 16:22:58 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:21:49 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **env)
 	display_env(shell);
 	while (TRUE)
 	{
-		shell->line = readline(shell->prompt);
+		set_line(shell, readline(shell->prompt));
 		if (shell->line == NULL || ft_strcmp(shell->line, "exit") == 0)
 			exit_shell(shell, "Goodbye :)");
 		if (ft_strlen(shell->line) > 0)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_value.c                                    :+:      :+:    :+:   */
+/*   get_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:24:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 16:16:29 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:46:44 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_env_value(t_shell *shell, char *key)
+char	*get_env_var(t_shell *shell, char *key)
 {
 	char	*new_key;
 	size_t	new_key_size;
