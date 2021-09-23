@@ -113,6 +113,7 @@ SOURCES += ft_strdup.c
 SOURCES += ft_strlen.c
 SOURCES += ft_strmult_back.c
 SOURCES += ft_strmult_front.c
+SOURCES += ft_strncmp.c
 SOURCES += ft_strndup.c
 SOURCES += ft_tolower.c
 SOURCES += ft_toupper.c

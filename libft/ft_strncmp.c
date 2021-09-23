@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_shell.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 20:07:44 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 15:06:53 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/23 15:34:46 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/23 15:36:01 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	*destroy_shell(t_shell **shell)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	if (*shell != NULL)
+	size_t	c_index;
+
+	c_index = 0;
+	while ((s1[c_index] || s2[c_index]) && c_index < n)
 	{
-		(*shell)->env = ft_destroy_splitted(&(*shell)->env);
-		free((*shell)->line);
-		(*shell)->line = NULL;
-		free((*shell)->prompt);
-		(*shell)->prompt = NULL;
-		free(*shell);
-		*shell = NULL;
+		if (s1[c_index] != s2[c_index])
+			return ((unsigned char)s1[c_index] - (unsigned char)s2[c_index]);
+		c_index++;
 	}
-	return (NULL);
+	return (0);
 }

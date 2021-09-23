@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_shell_func.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:34:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/14 18:05:34 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/23 15:50:51 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ t_shell	*create_shell(char **env);
 **	./shell/destroy_shell.c
 */
 void	*destroy_shell(t_shell **shell);
-
-/*
-**	Set line in shell structure.
-**	./shell/set_line.c
-*/
-void	set_line(t_shell *shell, char *line);
 
 /*
 **	Update prompt in shell structure.

@@ -130,6 +130,7 @@ end:
 #	Generate .mk (Makefile includes)
 gmk:
 	@find $(INCLUDES_PATH) -type f -name '*.h' | sed 's/^/INCLUDES += /' > includes.mk
-	@find sources -type f -name '*.c' ! -path "sources/program/*" | sed 's/^/SOURCES += /' > sources.mk
+	@find sources -type f -name '*.c' | sed 's/^/SOURCES += /' > sources.mk
+#	@find sources -type f -name '*.c' ! -path "sources/program/*" | sed 's/^/SOURCES += /' > sources.mk
 
 .PHONY:	all oclean clean fclean re r rl norminette end gmk
