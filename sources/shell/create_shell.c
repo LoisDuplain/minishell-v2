@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:28:42 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 15:06:23 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:13:58 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_shell	*create_shell(char **env)
 	shell->env = create_env(env);
 	if (shell->env == NULL)
 		return (destroy_shell(&shell));
+	set_env_var(shell, "PWD", getcwd(NULL, 0), TRUE);
 	update_prompt(shell);
 	shell->line = NULL;
 	return (shell);

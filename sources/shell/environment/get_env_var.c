@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:24:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 22:46:44 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:05:30 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,15 @@
 
 char	*get_env_var(t_shell *shell, char *key)
 {
-	char	*new_key;
-	size_t	new_key_size;
-	size_t	line_index;
+	ssize_t	env_var_index;
 
-	new_key = ft_append_char_to_str(key, '=');
-	if (ft_strcmp(new_key, "?=") == 0)
+	if (ft_strcmp(key, "?") == 0)
 	{
-		free(new_key);
 		/* TODO: PRINT ERRNO VALUE */
 		return (ft_strdup("ERRNO VALUE (TODO)", FALSE));
 	}
-	new_key_size = ft_strlen(new_key);
-	line_index = 0;
-	while (shell->env[line_index] != NULL)
-	{
-		if (ft_strncmp(shell->env[line_index], new_key, new_key_size) == 0)
-		{
-			free(new_key);
-			return (ft_strdup(&shell->env[line_index][new_key_size], FALSE));
-		}
-		line_index++;
-	}
-	free(new_key);
-	return (NULL);
+	env_var_index = get_env_var_index(shell, key);
+	if (env_var_index == -1)
+		return (NULL);
+	return (ft_strdup(&shell->env[env_var_index][ft_strlen(key) + 1], FALSE));
 }

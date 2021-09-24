@@ -54,8 +54,8 @@ all:	$(NAME)
 	$(FLAGS)																\
 	-I $(INCLUDES_PATH)														\
 	-I $(BREW_INCLUDES_PATH)												\
-	-D READLINE_PATH=\"$(BREW_PATH)/readline/include/readline/readline.h\"	\
-	-D HISTORY_PATH=\"$(BREW_PATH)/readline/include/readline/history.h\"	\
+	-D READLINE_PATH=\"$(BREW_INCLUDES_PATH)/readline/readline.h\"			\
+	-D HISTORY_PATH=\"$(BREW_INCLUDES_PATH)/readline/history.h\"			\
 	-c $<																	\
 	-o $@
 #	Print end of compilation

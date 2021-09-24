@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_shell_environment_func.h                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 14:51:53 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 22:52:46 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:13:44 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,27 @@ void	display_env(t_shell *shell);
 size_t	get_env_length(t_shell *shell);
 
 /*
+**	Get index of environment variable in environment string array.
+**	./shell/environment/get_env_var_index.c
+*/
+ssize_t	get_env_var_index(t_shell *shell, char *key);
+
+/*
 **	Get environment variable value by environment key in environment string array.
 **	./shell/environment/get_env_value.c
 */
 char	*get_env_var(t_shell *shell, char *key);
 
 /*
-**	Check if environment string array contains key.
-**	./shell/environment/env_var_exists.c
+**	Remove environment variable by key.
+**	./shell/environment/unset_env_var.c
 */
-t_bool	env_var_exists(t_shell *shell, char *key);
+void	unset_env_var(t_shell *shell, char *key);
+
+/*
+**	Set or add environment variable value by key.
+**	./shell/environment/set_env_var.c
+*/
+void	set_env_var(t_shell *shell, char *key, char *value, t_bool free_value);
 
 #endif

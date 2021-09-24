@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 21:21:49 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/24 17:15:28 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int argc, char **argv, char **env)
 	shell = create_shell(env);
 	if (shell == NULL)
 		exit_shell(shell, "Shell creation failed.");
+	signal(SIGINT, ctrl_c_signal);
+	signal(SIGQUIT, ctrl_backslash_signal);
 	display_env(shell);
 	while (TRUE)
 	{
@@ -43,6 +45,8 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(shell->line) > 0)
 		{
 			add_history(shell->line);
+			set_env_var(shell, shell->line, shell->line, FALSE);
+			display_env(shell);
 		}
 	}
 	return (0);

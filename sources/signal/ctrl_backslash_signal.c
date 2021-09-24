@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_line.c                                         :+:      :+:    :+:   */
+/*   ctrl_backslash_signal.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 21:19:03 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/24 14:40:09 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/24 17:12:57 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/24 17:15:06 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	set_line(t_shell *shell, char *line)
+void	ctrl_backslash_signal(int signal)
 {
-	free(shell->line);
-	shell->line = line;
+	(void)signal;
+	/* TODO: Handle CTRL + BACKSLASH */
+	ft_putstr_nl("CTRL + BACKSLASH (TODO)");
 }

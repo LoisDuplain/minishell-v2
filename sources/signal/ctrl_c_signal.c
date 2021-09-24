@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_var_exists.c                                   :+:      :+:    :+:   */
+/*   ctrl_c_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 22:47:35 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 22:54:17 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/24 16:38:04 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/24 17:14:31 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	env_var_exists(t_shell *shell, char *key)
+void	ctrl_c_signal(int signal)
 {
-	char	*env_var_value;
-
-	env_var_value = get_env_var(shell, key);
-	if (env_var_value == NULL)
-		return (FALSE);
-	free(env_var_value);
-	return (TRUE);
+	(void)signal;
+	ft_putchar('\n');
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }

@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:09:01 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 15:10:41 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:56:02 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	display_env(t_shell *shell)
 	line_index = 0;
 	while (shell->env[line_index] != NULL)
 	{
+		ft_putull(line_index);
+		ft_putstr(" ");
 		ft_putstr_nl(shell->env[line_index]);
 		line_index++;
 	}

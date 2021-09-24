@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_shell_func.h                             :+:      :+:    :+:   */
+/*   minishell_signal_func.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 22:34:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/24 14:40:49 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/24 16:41:02 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/24 17:15:45 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_SHELL_FUNC_H
-# define MINISHELL_SHELL_FUNC_H
+#ifndef MINISHELL_SIGNAL_FUNC_H
+# define MINISHELL_SIGNAL_FUNC_H
 
 /*
 **	START CUSTOM INCLUDES
@@ -24,27 +24,15 @@
 */
 
 /*
-**	Create new shell structure.
-**	./shell/create_shell.c
+**	Handle CTRL + C signal.
+**	./shell/ctrl_c_signal.c
 */
-t_shell	*create_shell(char **env);
+void	ctrl_c_signal(int signal);
 
 /*
-**	Destroy shell structure.
-**	./shell/destroy_shell.c
+**	Handle CTRL + BACKSLASH signal.
+**	./shell/ctrl_backslash_signal.c
 */
-void	*destroy_shell(t_shell **shell);
-
-/*
-**	Update prompt in shell structure.
-**	./shell/update_prompt.c
-*/
-void	update_prompt(t_shell *shell);
-
-/*
-**	Free previous allocated line string and read the new one.
-**	./shell/set_line.c
-*/
-void	set_line(t_shell *shell, char *line);
+void	ctrl_backslash_signal(int signal);
 
 #endif
