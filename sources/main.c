@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/24 17:15:28 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:50:25 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	main(int argc, char **argv, char **env)
 {
 	t_shell	*shell;
 
-	(void)argc;
 	(void)argv;
+	if (argc != 1)
+		exit_shell(shell, "Wrong number of arguments.");
 	shell = create_shell(env);
 	if (shell == NULL)
 		exit_shell(shell, "Shell creation failed.");
@@ -45,8 +46,6 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(shell->line) > 0)
 		{
 			add_history(shell->line);
-			set_env_var(shell, shell->line, shell->line, FALSE);
-			display_env(shell);
 		}
 	}
 	return (0);
