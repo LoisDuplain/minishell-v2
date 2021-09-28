@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_shell.c                                    :+:      :+:    :+:   */
+/*   parse_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 20:07:44 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/28 13:04:57 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/28 12:26:34 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/28 12:37:50 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*destroy_shell(t_shell **shell)
+size_t	parse_quotes(char *line, size_t index, char quote, char **str)
 {
-	if (*shell != NULL)
+	size_t	line_length;
+
+	line_length = ft_strlen(line);
+	while (line[index] != quote && index < line_length)
 	{
-		(*shell)->env = ft_destroy_string_array(&(*shell)->env);
-		free((*shell)->prompt);
-		(*shell)->prompt = NULL;
-		free((*shell)->line);
-		(*shell)->line = NULL;
-		(*shell)->cmd = ft_destroy_string_array(&(*shell)->cmd);
-		free(*shell);
-		*shell = NULL;
+		*str = ft_append_char_to_str(*str, line[index]);
+		index++;
 	}
-	return (NULL);
+	if (line[index] == quote)
+		index++;
+	return (index);
 }

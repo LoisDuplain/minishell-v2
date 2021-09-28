@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_shell.c                                    :+:      :+:    :+:   */
+/*   minishell_parser_func.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 20:07:44 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/28 13:04:57 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/28 12:45:31 by lduplain          #+#    #+#             */
+/*   Updated: 2021/09/28 12:48:59 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_PARSER_FUNC_H
+# define MINISHELL_PARSER_FUNC_H
 
-void	*destroy_shell(t_shell **shell)
-{
-	if (*shell != NULL)
-	{
-		(*shell)->env = ft_destroy_string_array(&(*shell)->env);
-		free((*shell)->prompt);
-		(*shell)->prompt = NULL;
-		free((*shell)->line);
-		(*shell)->line = NULL;
-		(*shell)->cmd = ft_destroy_string_array(&(*shell)->cmd);
-		free(*shell);
-		*shell = NULL;
-	}
-	return (NULL);
-}
+/*
+**	START CUSTOM INCLUDES
+*/
+
+# include "minishell.h"
+
+/*
+**	END CUSTOM INCLUDES
+*/
+
+/*
+**	Create new shell structure.
+**	./parser/parse_quotes.c
+*/
+void	parse(t_shell *shell);
+
+/*
+**	Create new shell structure.
+**	./parser/parse_quotes.c
+*/
+size_t	parse_quotes(char *line, size_t index, char quote, char **str);
+
+#endif

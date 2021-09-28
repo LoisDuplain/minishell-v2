@@ -1,4 +1,6 @@
 SOURCES += sources/main.c
+SOURCES += sources/parser/parse.c
+SOURCES += sources/parser/parse_quotes.c
 SOURCES += sources/shell/create_shell.c
 SOURCES += sources/shell/destroy_shell.c
 SOURCES += sources/shell/environment/create_env.c
