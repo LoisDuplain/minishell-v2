@@ -1,3 +1,9 @@
+SOURCES += sources/cmd_builder/create_cmd_builder.c
+SOURCES += sources/cmd_builder/destroy_cmd_builder.c
+SOURCES += sources/cmd_builder/get_cmds_length.c
+SOURCES += sources/cmd_builder/next_cmd.c
+SOURCES += sources/cmd_builder/next_cmd_part.c
+SOURCES += sources/cmd_builder/parse_line.c
 SOURCES += sources/main.c
 SOURCES += sources/parser/parse.c
 SOURCES += sources/parser/parse_quotes.c
