@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_builtin.c                                       :+:      :+:    :+:   */
+/*   put_builtin_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 14:38:04 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 17:52:37 by lduplain         ###   ########.fr       */
+/*   Created: 2021/10/04 17:48:35 by lduplain          #+#    #+#             */
+/*   Updated: 2021/10/04 17:50:34 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cd_builtin(t_shell *shell, char **cmd)
+void	put_builtin_error(char *builtin, char *content, char *error)
 {
-	char	*path;
-
-	/* TODO: Set old pwd */
-	if (cmd[1] == NULL || ft_strcmp(cmd[1], "~") == 0)
-		path = get_env_var(shell, "HOME");
-	else
-		path = ft_strdup(cmd[1], FALSE);
-	if (path == NULL)
-		return ;
-	if (chdir(path) == -1)
-	{
-		put_builtin_error("cd", path, "No such file or directory");
-		errno = 1;
-	}
-	else
-	{
-		update_prompt(shell);
-		errno = 0;
-	}
-	free(path);
+	ft_putstr_err(builtin);
+	ft_putstr_err(": ");
+	ft_putstr_err(content);
+	ft_putstr_err(": ");
+	ft_putstr_errnl(error);
 }

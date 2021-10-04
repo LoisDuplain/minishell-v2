@@ -1,5 +1,7 @@
 SOURCES += sources/builtin/cd_builtin.c
 SOURCES += sources/builtin/echo_builtin.c
+SOURCES += sources/builtin/export_builtin.c
+SOURCES += sources/builtin/put_builtin_error.c
 SOURCES += sources/builtin/pwd_builtin.c
 SOURCES += sources/cmd_builder/create_cmd_builder.c
 SOURCES += sources/cmd_builder/destroy_cmd_builder.c

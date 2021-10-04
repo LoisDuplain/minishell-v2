@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:48:50 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 15:34:00 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/04 18:11:01 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,34 @@
 */
 
 /*
-**	CD builtin..
+**	Builtins can produce some errors, this function has been created to print
+**	it correctly.
+**	./builtin/put_builtin_error.c
+*/
+void	put_builtin_error(char *builtin, char *content, char *error);
+
+/*
+**	CD builtin.
 **	./builtin/cd_builtin.c
 */
 void	cd_builtin(t_shell *shell, char **cmd);
 
 /*
-**	ECHO builtin..
+**	ECHO builtin.
 **	./builtin/echo_builtin.c
 */
 void	echo_builtin(t_shell *shell, char **cmd);
 
 /*
-**	PWD builtin..
+**	PWD builtin.
 **	./builtin/pwd_builtin.c
 */
 void	pwd_builtin(t_shell *shell, char **args);
+
+/*
+**	EXPORT builtin.
+**	./builtin/export_builtin.c
+*/
+void	export_builtin(t_shell *shell, char **cmd);
 
 #endif

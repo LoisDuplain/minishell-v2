@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:28:43 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 15:32:52 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:53:23 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	pwd_builtin(t_shell *shell, char **args)
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 	{
-		ft_putstr_err("pwd: getcwd error: ");
-		ft_putstr_errnl(strerror(errno));
+		put_builtin_error("pwd", "getcwd error", strerror(errno));
+		errno = 1;
 		return ;
 	}
 	ft_putstr_nl(pwd);
