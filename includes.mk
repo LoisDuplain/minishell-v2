@@ -1,4 +1,5 @@
 INCLUDES += ./includes/minishell.h
+INCLUDES += ./includes/minishell_builtin_func.h
 INCLUDES += ./includes/minishell_cmd_builder_func.h
 INCLUDES += ./includes/minishell_cmd_builder_struct.h
 INCLUDES += ./includes/minishell_parser_func.h
