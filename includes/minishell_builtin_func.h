@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:48:50 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 18:11:01 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/05 13:15:18 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,17 @@ void	pwd_builtin(t_shell *shell, char **args);
 **	./builtin/export_builtin.c
 */
 void	export_builtin(t_shell *shell, char **cmd);
+
+/*
+**	UNSET builtin.
+**	./builtin/unset_builtin.c
+*/
+void	unset_builtin(t_shell *shell, char **cmd);
+
+/*
+**	ENV builtin.
+**	./builtin/env_builtin.c
+*/
+void	env_builtin(t_shell *shell, char **cmd);
 
 #endif

@@ -1,6 +1,7 @@
 SOURCES += add_vector_coord.c
 SOURCES += add_vector_vector.c
 SOURCES += color_to_int.c
+SOURCES += copy_str_array.c
 SOURCES += create_color.c
 SOURCES += create_icolor.c
 SOURCES += create_interval.c
@@ -166,6 +167,7 @@ SOURCES += rotate_vector.c
 SOURCES += rotate_vector_x.c
 SOURCES += rotate_vector_y.c
 SOURCES += rotate_vector_z.c
+SOURCES += sort_str_array.c
 SOURCES += sub_vector_coord.c
 SOURCES += sub_vector_vector.c
 INCLUDES += libft.h

@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:35:00 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 18:16:39 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:45:02 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,29 @@ static void	export_variable(t_shell *shell, char *variable)
 	errno = 0;
 }
 
+static void	display_env_variables(t_shell *shell)
+{
+	char	**sorted_env_variables;
+	size_t	index;
+
+	sorted_env_variables = sort_str_array(shell->env);
+	index = 0;
+	while (sorted_env_variables[index] != NULL)
+	{
+		ft_printf("declare -x %s\n", sorted_env_variables[index]);
+		index++;
+	}
+	ft_destroy_string_array(&sorted_env_variables);
+	errno = 0;
+}
+
 void	export_builtin(t_shell *shell, char **cmd)
 {
 	size_t	index;
 
 	index = 1;
-	/* TODO: display correctement les variables exportees */
 	if (cmd[index] == NULL)
-		display_env(shell);
+		display_env_variables(shell);
 	while (cmd[index] != NULL)
 	{
 		if (is_alpha(cmd[index][0]) || cmd[index][0] == '_')
