@@ -13,7 +13,6 @@ SOURCES += sources/cmd_builder/next_cmd_part.c
 SOURCES += sources/cmd_builder/parse_line.c
 SOURCES += sources/main.c
 SOURCES += sources/parser/parse.c
-SOURCES += sources/parser/parse_quotes.c
 SOURCES += sources/shell/create_shell.c
 SOURCES += sources/shell/destroy_shell.c
 SOURCES += sources/shell/environment/create_env.c

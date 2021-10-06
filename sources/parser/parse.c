@@ -6,11 +6,37 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/05 15:54:53 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/06 13:25:42 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
+/*
+**	TODO:
+**	- Parse space
+**	- Parse simple quotes
+**	- Parse double quotes
+**	- Parse pipes
+**	- Parse redirections
+**	- Parse semicolons
+*/
+
+void	parse_quotes(t_cmd_builder *cmd_builder, char quote)
+{
+	char	current_char;
+
+	cmd_builder->readed_index++;
+	current_char = cmd_builder->line[cmd_builder->readed_index];
+	while (current_char && current_char != quote)
+	{
+		cmd_builder->cmd_part = ft_append_char_to_str(cmd_builder->cmd_part,
+				current_char);
+		cmd_builder->readed_index++;
+		current_char = cmd_builder->line[cmd_builder->readed_index];
+	}
+}
 
 void	parse(t_shell *shell)
 {
@@ -24,25 +50,16 @@ void	parse(t_shell *shell)
 	}
 	while (cmd_builder->readed_index < ft_strlen(cmd_builder->line))
 	{
-		if (cmd_builder->line[cmd_builder->readed_index] == ' ')
-		{
+		if (cmd_builder->line[cmd_builder->readed_index] == '\'')
+			parse_quotes(cmd_builder, '\'');
+		else if (cmd_builder->line[cmd_builder->readed_index] == '\"')
+			parse_quotes(cmd_builder, '\"');
+		else if (cmd_builder->line[cmd_builder->readed_index] == ' ')
 			next_cmd_part(cmd_builder);
-			cmd_builder->readed_index++;
-			continue ;
-		}
-		if (cmd_builder->line[cmd_builder->readed_index] == '|')
-		{
+		else if (cmd_builder->line[cmd_builder->readed_index] == ';')
 			next_cmd(cmd_builder);
-			cmd_builder->readed_index++;
-			continue ;
-		}
-		if (cmd_builder->line[cmd_builder->readed_index] == ';')
-		{
-			next_cmd(cmd_builder);
-			cmd_builder->readed_index++;
-			continue ;
-		}
-		cmd_builder->cmd_part = ft_append_char_to_str(cmd_builder->cmd_part, cmd_builder->line[cmd_builder->readed_index]);
+		else
+			cmd_builder->cmd_part = ft_append_char_to_str(cmd_builder->cmd_part, cmd_builder->line[cmd_builder->readed_index]);
 		cmd_builder->readed_index++;
 	}
 	next_cmd(cmd_builder);
@@ -70,42 +87,3 @@ void	parse(t_shell *shell)
 	*/
 	destroy_cmd_builder(&cmd_builder);
 }
-
-/* void	parse(t_shell *shell)
-{
-	char	*cmd_part;
-	size_t	line_length;
-	size_t	index;
-
-	cmd = NULL;
-	cmd_part = NULL;
-	line_length = ft_strlen(shell->line);
-	index = 0;
-	while (index < line_length)
-	{
-		if (shell->line[index] == '"' || shell->line[index] == '\'')
-		{
-			index = parse_quotes(shell->line, index + 1, shell->line[index], &cmd_part);
-			continue ;
-		}
-		if (shell->line[index] == ' ')
-		{
-			cmd = ft_add_str_to_str_array(cmd, cmd_part, TRUE);
-			cmd_part = NULL;
-			index++;
-			continue ;
-		}
-		cmd_part = ft_append_char_to_str(cmd_part, shell->line[index]);
-		index++;
-	}
-	cmd = ft_add_str_to_str_array(cmd, cmd_part, TRUE);
-
-	index = 0;
-	while (index < ft_get_string_array_length(cmd))
-	{
-		printf("-%s-\n", cmd[index]);
-		index++;
-	}
-
-	ft_destroy_splitted(&cmd);
-} */
