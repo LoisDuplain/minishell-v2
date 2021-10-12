@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/06 13:25:42 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:02:32 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,15 @@
 **	- Parse semicolons
 */
 
-void	parse_quotes(t_cmd_builder *cmd_builder, char quote)
+void	parse_redirection(t_cmd_builder *cmd_builder, char redirect)
 {
-	char	current_char;
-
-	cmd_builder->readed_index++;
-	current_char = cmd_builder->line[cmd_builder->readed_index];
-	while (current_char && current_char != quote)
-	{
-		cmd_builder->cmd_part = ft_append_char_to_str(cmd_builder->cmd_part,
-				current_char);
-		cmd_builder->readed_index++;
-		current_char = cmd_builder->line[cmd_builder->readed_index];
-	}
+	
 }
 
 void	parse(t_shell *shell)
 {
 	t_cmd_builder	*cmd_builder;
+	char			current_char;
 
 	cmd_builder = create_cmd_builder(shell->line);
 	if (cmd_builder == NULL)
@@ -50,16 +41,18 @@ void	parse(t_shell *shell)
 	}
 	while (cmd_builder->readed_index < ft_strlen(cmd_builder->line))
 	{
-		if (cmd_builder->line[cmd_builder->readed_index] == '\'')
-			parse_quotes(cmd_builder, '\'');
-		else if (cmd_builder->line[cmd_builder->readed_index] == '\"')
-			parse_quotes(cmd_builder, '\"');
-		else if (cmd_builder->line[cmd_builder->readed_index] == ' ')
+		current_char = cmd_builder->line[cmd_builder->readed_index];
+		if (current_char == '\'' || current_char == '\"')
+			parse_quotes(cmd_builder, current_char);
+		else if (current_char == '<' || current_char == '>')
+			parse_redirection(cmd_builder, current_char);
+		else if (current_char == ' ')
 			next_cmd_part(cmd_builder);
-		else if (cmd_builder->line[cmd_builder->readed_index] == ';')
+		else if (current_char == ';')
 			next_cmd(cmd_builder);
 		else
-			cmd_builder->cmd_part = ft_append_char_to_str(cmd_builder->cmd_part, cmd_builder->line[cmd_builder->readed_index]);
+			cmd_builder->cmd_part = ft_append_char_to_str(
+					cmd_builder->cmd_part, current_char);
 		cmd_builder->readed_index++;
 	}
 	next_cmd(cmd_builder);
