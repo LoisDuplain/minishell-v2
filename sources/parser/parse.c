@@ -6,12 +6,11 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/12 15:02:32 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:00:27 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 /*
 **	TODO:
@@ -25,7 +24,16 @@
 
 void	parse_redirection(t_cmd_builder *cmd_builder, char redirect)
 {
-	
+	next_cmd_part(cmd_builder);
+	cmd_builder->cmd_part = ft_append_char_to_str(
+			cmd_builder->cmd_part, redirect);
+	if (cmd_builder->line[cmd_builder->readed_index + 1] == redirect)
+	{
+		cmd_builder->readed_index++;
+		cmd_builder->cmd_part = ft_append_char_to_str(
+				cmd_builder->cmd_part, redirect);
+	}
+	next_cmd(cmd_builder);
 }
 
 void	parse(t_shell *shell)
