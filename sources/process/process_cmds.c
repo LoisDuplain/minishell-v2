@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/19 16:50:16 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:51:59 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	process_cmd(char **cmd, size_t cmd_len)
 			if (cmd_part_index >= cmd_len)
 				break ;
 			dest_fd = open(cmd[cmd_part_index], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-			puts("process_cmd - g");
 			if (dest_fd == -1)
 				break ;
 			int backup = dup(STDOUT_FILENO);
