@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/10/04 14:59:01 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:50:54 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # include "minishell_shell_struct.h"
 # include "minishell_cmd_builder_struct.h"
 
+# include "minishell_process_func.h"
 # include "minishell_builtin_func.h"
 # include "minishell_cmd_builder_func.h"
 # include "minishell_parser_func.h"

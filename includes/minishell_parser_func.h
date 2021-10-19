@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:45:31 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/12 14:58:54 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/19 13:42:09 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,27 @@
 void	parse(t_shell *shell);
 
 /*
-**	Parse quotes strings.
-**	./parser/parse_quotes.c
+**	Parse quoted strings.
+**	./parser/parse_quote.c
 */
-void	parse_quotes(t_cmd_builder *cmd_builder, char quote);
+void	parse_quote(t_cmd_builder *cmd_builder, char quote);
+
+/*
+**	Parse piped command.
+**	./parser/parse_pipe.c
+*/
+void	parse_pipe(t_cmd_builder *cmd_builder);
+
+/*
+**	Parse redirected command.
+**	./parser/parse_redirection.c
+*/
+void	parse_redirection(t_cmd_builder *cmd_builder, char redirect);
+
+/*
+**	Specify parsing method by the current_char.
+**	./parser/dispatch_parsing.c
+*/
+void	dispatch_parsing(t_cmd_builder *cmd_builder, char current_char);
 
 #endif
