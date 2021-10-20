@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/19 15:52:09 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:00:52 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	parse(t_shell *shell)
 	/*
 	**	TODO: process ne doit pas etre appele ici
 	*/
-	process_cmds(cmd_builder);
+	process_cmds(shell, cmd_builder);
 	destroy_cmd_builder(&cmd_builder);
 }

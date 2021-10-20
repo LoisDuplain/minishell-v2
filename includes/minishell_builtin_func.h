@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:48:50 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/05 13:15:18 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:43:15 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,11 @@ void	unset_builtin(t_shell *shell, char **cmd);
 **	./builtin/env_builtin.c
 */
 void	env_builtin(t_shell *shell, char **cmd);
+
+/*
+**	Get builtin from string builtin name.
+**	./builtin/get_builtin.c
+*/
+void	(*get_builtin(char *builtin_str))(t_shell *shell, char **cmd);
 
 #endif

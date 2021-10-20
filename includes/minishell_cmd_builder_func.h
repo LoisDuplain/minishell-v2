@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 15:30:48 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/19 13:35:19 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:08:04 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void			next_cmd(t_cmd_builder *cmd_builder);
 **	Display a cmd_bulder as text.
 **	./cmd_builder/display_cmd_builder.c
 */
-void	display_cmd_builder(t_cmd_builder *cmd_builder);
+void			display_cmd_builder(t_cmd_builder *cmd_builder);
 
 #endif

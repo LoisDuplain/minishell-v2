@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 14:51:53 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/24 16:13:44 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:06:08 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@
 **	./shell/environment/create_env.c
 */
 char	**create_env(char **default_env);
-
-/*
-**	Display envrionment string array.
-**	./shell/environment/display_env.c
-*/
-void	display_env(t_shell *shell);
 
 /*
 **	Get environment string array size.

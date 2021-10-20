@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/28 12:51:56 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:05:47 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv, char **env)
 		exit_shell(shell, "Wrong number of arguments.");
 	signal(SIGINT, ctrl_c_signal);
 	signal(SIGQUIT, ctrl_backslash_signal);
-	display_env(shell);
 	while (TRUE)
 	{
 		set_line(shell, readline(shell->prompt));

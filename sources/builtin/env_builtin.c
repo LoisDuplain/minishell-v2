@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:12:08 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/05 15:40:06 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:11:10 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	env_builtin(t_shell *shell, char **cmd)
 	size_t	index;
 
 	(void)cmd;
-	index = 1;
+	index = 0;
 	while (shell->env[index] != NULL)
 	{
 		if (ft_contains_char(shell->env[index], '='))

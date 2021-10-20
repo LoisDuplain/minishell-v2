@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:49:58 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/19 15:51:59 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:00:41 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@
 **	Process parsed commands.
 **	./process/process_cmds.c
 */
-void	process_cmds(t_cmd_builder *cmd_builder);
+void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder);
 
 #endif
