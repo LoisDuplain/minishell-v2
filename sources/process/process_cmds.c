@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/20 14:54:19 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:52:33 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 	while (cmd_part_index < cmd_len)
 	{
 		args = ft_add_str_to_str_array(args,
-				ft_strdup(cmd[cmd_part_index], FALSE), TRUE);
+				get_processed_arg(shell, cmd[cmd_part_index]), TRUE);
 		cmd_part_index++;
 	}
 	if (get_builtin(ft_tolower(args[0])) != NULL)

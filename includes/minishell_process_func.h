@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:49:58 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/20 13:00:41 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:50:49 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,11 @@
 **	./process/process_cmds.c
 */
 void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder);
+
+/*
+**	Get processed argument.
+**	./process/get_processed_arg.c
+*/
+char	*get_processed_arg(t_shell *shell, char *arg);
 
 #endif
