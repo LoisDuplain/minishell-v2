@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:43:34 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/21 22:18:25 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/21 22:19:52 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	*get_processed_arg(t_shell *shell, char *arg)
 	size_t	arg_len;
 	size_t	i;
 
-	exit(EXIT_FAILURE);
 	processed_arg = NULL;
 	arg_len = ft_strlen(arg);
 	i = 0;
