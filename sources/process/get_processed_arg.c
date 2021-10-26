@@ -1,59 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_arg.c                                      :+:      :+:    :+:   */
+/*   get_processed_arg.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:43:34 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/21 22:19:52 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:03:39 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*get_processed_env_var(t_shell *shell, char *arg)
-{
-	char	*key;
-	size_t	index;
-	char	*result;
-
-	key = NULL;
-	index = 0;
-	while (arg[index] && (is_alphanumeric(arg[index]) || arg[index] == '?'))
-	{
-		key = ft_append_char_to_str(key, arg[index]);
-		index++;
-	}
-	result = get_env_var(shell, key);
-	free(key);
-	return (result);
-}
-
-char	*get_processed_quote(t_shell *shell, char *arg, size_t *i, char quote)
-{
-	char	*result;
-	char	*env_var;
-
-	result = NULL;
-	(*i)++;
-	while (arg[*i] && arg[*i] != quote)
-	{
-		if (arg[*i] == '$' && quote == '\"')
-		{
-			env_var = get_processed_env_var(shell, arg);
-			*i += ft_strlen(env_var);
-			result = ft_append_strs(result, env_var, TRUE, TRUE);
-		}
-		else
-		{
-			result = ft_append_char_to_str(result, arg[*i]);
-			(*i)++;
-		}
-	}
-	(*i)++;
-	return (result);
-}
 
 char	*get_processed_arg(t_shell *shell, char *arg)
 {
@@ -67,8 +24,12 @@ char	*get_processed_arg(t_shell *shell, char *arg)
 	while (i < arg_len)
 	{
 		if (arg[i] == '\'' || arg[i] == '\"')
-			ft_append_strs(processed_arg,
-				get_processed_quote(shell, arg, &i, arg[i]), TRUE, FALSE);
+			processed_arg = ft_append_strs(processed_arg,
+					get_processed_quote(shell, arg, arg_len, &i),
+					TRUE, TRUE);
+		else if (arg[i] == '$')
+			processed_arg = append_env_var_to_str(shell,
+					processed_arg, get_env_var_name(arg, arg_len, &i));
 		else
 		{
 			processed_arg = ft_append_char_to_str(processed_arg, arg[i]);
