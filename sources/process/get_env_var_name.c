@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:58:08 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/26 17:16:42 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:35:37 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_env_var_name(char *arg, size_t arg_len, size_t *i)
 		result = ft_append_char_to_str(result, arg[*i]);
 		(*i)++;
 		if (arg[*i - 1] == '?')
-			break;
+			break ;
 	}
 	return (result);
 }
