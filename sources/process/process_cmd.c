@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:41:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/27 15:57:00 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:23:16 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,24 @@ void	redir(int from, char *to, int mode)
 	dup2(to_fd, from);
 	close(to_fd);
 	// TODO: Do action
+	ft_putstr_nl("Eh beh ca va ?");
 	dup2(backup_fd, from);
 	close(backup_fd);
+}
+
+int	get_output_redirection_mode(char *redirection)
+{
+	if (ft_strcmp(redirection, ">>") == 0)
+		return (O_APPEND);
+	else if (ft_strcmp(redirection, ">") == 0)
+		return (O_TRUNC);
+	return (0);
 }
 
 void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 {
 	char	**args;
 	size_t	cmd_part_index;
-	int		fd;
-	int		backup;
 
 	args = NULL;
 	cmd_part_index = 0;
@@ -43,16 +51,8 @@ void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 		{
 			cmd_part_index++;
 			if (cmd_part_index >= cmd_len)
-				break ;
-			if (ft_strcmp(cmd[cmd_part_index - 1], ">>") == 0)
-				fd = open(cmd[cmd_part_index], O_WRONLY | O_APPEND | O_CREAT, 0644);
-			else
-				fd = open(cmd[cmd_part_index], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-			if (fd == -1)
-				break ;
-			backup = dup(STDOUT_FILENO);
-			dup2(fd, STDOUT_FILENO);
-			close(fd);
+				break ; // TODO: handle error
+			redir(STDOUT_FILENO, cmd[cmd_part_index], get_output_redirection_mode(cmd[cmd_part_index - 1]));
 		}
 		else
 			args = ft_add_str_to_str_array(args,
@@ -63,10 +63,5 @@ void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 	if (get_builtin(ft_tolower(args[0])) != NULL)
 		get_builtin(ft_tolower(args[0]))(shell, args);
 	// -----------------
-
-	// TEST
-	/* dup2(backup, STDOUT_FILENO);
-	close(backup); */
-
 	ft_destroy_string_array(&args);
 }
