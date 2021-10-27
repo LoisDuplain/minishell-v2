@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/21 22:30:46 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:17:21 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	exit_shell(t_shell *shell, char *message)
 {
-	ft_putstr_nl("exit");
 	if (message != NULL)
 	{
 		ft_putstr("\033[0;31m");
@@ -40,7 +39,7 @@ int	main(int argc, char **argv, char **env)
 	while (TRUE)
 	{
 		set_line(shell, readline(shell->prompt));
-		if (shell->line == NULL || ft_strcmp(shell->line, "exit") == 0)
+		if (shell->line == NULL)
 			exit_shell(shell, "Goodbye :)");
 		if (ft_strlen(shell->line) > 0)
 		{

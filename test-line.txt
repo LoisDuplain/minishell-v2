@@ -1,5 +1,0 @@
-echo .salut. ."bl'ur'p". .'bl"ur"p'. .'var -$USER- var'. ."var -$USER- var". .attention -$USER- attention. .errno:$?. .$?a. .$.
-
-Last argument doesn't work like bash
-
-Need to fix it

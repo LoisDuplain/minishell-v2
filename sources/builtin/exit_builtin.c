@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env_var.c                                      :+:      :+:    :+:   */
+/*   exit_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 15:24:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/27 14:52:49 by lduplain         ###   ########.fr       */
+/*   Created: 2021/10/27 15:08:20 by lduplain          #+#    #+#             */
+/*   Updated: 2021/10/27 15:11:49 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_env_var(t_shell *shell, char *key)
+void	exit_builtin(t_shell *shell, char **args)
 {
-	ssize_t	env_var_index;
-
-	// TODO: TEST ERRNO
-	if (key == NULL)
-		return (NULL);
-	if (ft_strcmp(key, "?") == 0)
-		return (ft_strdup("EXIT STATUS (TODO)", FALSE));
-		// return (ft_lltoa_ibase(errno, 10, FALSE));
-	env_var_index = get_env_var_index(shell, key);
-	if (env_var_index == -1)
-		return (NULL);
-	return (ft_strdup(&shell->env[env_var_index][ft_strlen(key) + 1], FALSE));
+	(void)args;
+	ft_putstr_errnl("exit");
+	ft_putstr("\033[0;32m");
+	ft_putstr("Goodbye :)");
+	ft_putstr_nl("\033[0m");
+	exit_shell(shell, NULL);
 }

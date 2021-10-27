@@ -1,0 +1,134 @@
+
+
+
+
+
+
+
+
+
+-----	ERRORS		-----
+
+# Command:	echo .salut. ."bl'ur'p". .'bl"ur"p'. .'var -$USER- var'. ."var -$USER- var". .attention -$USER- attention. .errno:$?. .$?. .$?a. .$.
+
+Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. .$.
+	It returns:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. ..    <------
+
+
+
+
+
+-----	CHECKED		-----
+
+# Command:	echo s"a"'l'ut
+
+Should	return:			salut
+	It returns:			salut
+
+-----------------------------------------
+
+# Command:	'e'"c"'h'"o" '-'"n" s"a"'l''u"t'
+
+Should	return:			salu"t$
+	It returns:			salu"t$
+
+
+
+
+
+
+
+
+
+-----------------------------------------
+
+TODO:
+
+#	Not interpret unclosed quotes or unspecified special characters like \ or ;.
+	---	TODO: Do a function who returns a boolean to check if all quotes are closed.
+
+#	Search and launch the right executable (based on the PATH variable or by using relative or absolute path)
+	--- TODO: Nothig to say.
+
+#	Quotes interpretations:
+		- ’ inhibit all interpretation of a sequence of characters.
+		-  " inhibit all interpretation of a sequence of characters except for $.
+	---	TODO: One thing to fix to print a dollar there is no env var key after.
+		TODO: NOT ERRNO BUT EXIT STATUS
+#	Environment variables ($ followed by characters) should expand to their values.
+	---	TODO: One thing to fix to print a dollar there is no env var key after.
+		TODO: NOT ERRNO BUT EXIT STATUS
+#	$? should expand to the exit status of the most recently executed foreground pipeline.
+	---	TODO: NOT ERRNO BUT EXIT STATUS
+
+#	Redirections:
+		- > should redirect output.	TODO: Test if no file is specified after redirection and if program doesnt have rights to write.
+		- “>>” should redirect output with append mode. TODO: Test if no file is specified after redirection and if program doesnt have rights to write.
+		
+		- < should redirect input.
+		- “<<” read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!
+		
+		- Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
+	---	TODO: Do input and pipes redirections.
+
+#	Shortcuts:
+	- ctrl-C ctrl-D ctrl-\ should work like in bash.
+	- ctrl-C print a new prompt on a newline.
+	- ctrl-D exit the shell.
+	- ctrl-\ do nothing.
+	---	TODO: Do all shortcuts.
+
+Done:
+
+#	Not use more than one global variable, think about it and be ready to explain why you do it.
+	---	Global variables have been created for noobs.
+
+#	Show a prompt when waiting for a new command.
+	---	The prompt is the current working directory.
+
+#	Have a working History.
+	---	Using history.h contained in readline formulae.
+
+#	It must implement the builtins:
+		- echo with option -n
+		- cd with only a relative or absolute path
+		- pwd with no options
+		- export with no options
+		- unset with no options
+		- env with no options or arguments
+		- exit with no options
+	--- All is done.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

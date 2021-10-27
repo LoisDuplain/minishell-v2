@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/10/20 12:34:06 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:00:17 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@
 **  Main function.
 **  ./main.c
 */
-int	main(int argc, char **argv, char **env);
+int		main(int argc, char **argv, char **env);
+
+/*
+**  Hard exit.
+**  ./main.c
+*/
+void	exit_shell(t_shell *shell, char *message);
 
 #endif

@@ -6,29 +6,11 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/21 18:52:33 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:41:29 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
-{
-	char	**args;
-	size_t	cmd_part_index;
-
-	args = NULL;
-	cmd_part_index = 0;
-	while (cmd_part_index < cmd_len)
-	{
-		args = ft_add_str_to_str_array(args,
-				get_processed_arg(shell, cmd[cmd_part_index]), TRUE);
-		cmd_part_index++;
-	}
-	if (get_builtin(ft_tolower(args[0])) != NULL)
-		get_builtin(ft_tolower(args[0]))(shell, args);
-	ft_destroy_string_array(&args);
-}
 
 void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder)
 {

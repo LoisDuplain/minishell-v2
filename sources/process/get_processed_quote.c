@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:47:54 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/26 17:04:20 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:10:53 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*get_processed_quote(t_shell *shell, char *arg,
 		result = ft_append_char_to_str(result, arg[*i]);
 		(*i)++;
 	}
+	(*i)++;
 	return (result);
 }

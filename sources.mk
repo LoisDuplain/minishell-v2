@@ -1,6 +1,7 @@
 SOURCES += sources/builtin/cd_builtin.c
 SOURCES += sources/builtin/echo_builtin.c
 SOURCES += sources/builtin/env_builtin.c
+SOURCES += sources/builtin/exit_builtin.c
 SOURCES += sources/builtin/export_builtin.c
 SOURCES += sources/builtin/get_builtin.c
 SOURCES += sources/builtin/put_builtin_error.c
@@ -23,6 +24,7 @@ SOURCES += sources/process/append_env_var_to_str.c
 SOURCES += sources/process/get_env_var_name.c
 SOURCES += sources/process/get_processed_arg.c
 SOURCES += sources/process/get_processed_quote.c
+SOURCES += sources/process/process_cmd.c
 SOURCES += sources/process/process_cmds.c
 SOURCES += sources/shell/create_shell.c
 SOURCES += sources/shell/destroy_shell.c
