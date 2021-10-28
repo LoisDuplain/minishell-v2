@@ -11,8 +11,8 @@
 
 # Command:	echo .salut. ."bl'ur'p". .'bl"ur"p'. .'var -$USER- var'. ."var -$USER- var". .attention -$USER- attention. .errno:$?. .$?. .$?a. .$.
 
-Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. .$.
 	It returns:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. ..    <------
+Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. .$.
 
 
 
@@ -22,15 +22,15 @@ Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- v
 
 # Command:	echo s"a"'l'ut
 
-Should	return:			salut
-	It returns:			salut
+Should	return:			salut	<- NL
+	It returns:			salut	<- NL
 
 -----------------------------------------
 
 # Command:	'e'"c"'h'"o" '-'"n" s"a"'l''u"t'
 
-Should	return:			salu"t$
-	It returns:			salu"t$
+	It returns:			salu"t	<- No NL
+Should	return:			salu"t	<- No NL
 
 
 
@@ -53,10 +53,10 @@ TODO:
 #	Quotes interpretations:
 		- ’ inhibit all interpretation of a sequence of characters.
 		-  " inhibit all interpretation of a sequence of characters except for $.
-	---	TODO: One thing to fix to print a dollar there is no env var key after.
+	---	TODO: One thing to fix to print a dollar when there is no env var key after.
 		TODO: NOT ERRNO BUT EXIT STATUS
 #	Environment variables ($ followed by characters) should expand to their values.
-	---	TODO: One thing to fix to print a dollar there is no env var key after.
+	---	TODO: One thing to fix to print a dollar when there is no env var key after.
 		TODO: NOT ERRNO BUT EXIT STATUS
 #	$? should expand to the exit status of the most recently executed foreground pipeline.
 	---	TODO: NOT ERRNO BUT EXIT STATUS
@@ -69,14 +69,14 @@ TODO:
 		- “<<” read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!
 		
 		- Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
-	---	TODO: Do input and pipes redirections.
+	---	TODO: Do input and pipes redirections and store backup_fd correctly.
 
 #	Shortcuts:
 	- ctrl-C ctrl-D ctrl-\ should work like in bash.
 	- ctrl-C print a new prompt on a newline.
 	- ctrl-D exit the shell.
 	- ctrl-\ do nothing.
-	---	TODO: Do all shortcuts.
+	---	TODO: Do shortcuts and test it.
 
 Done:
 
