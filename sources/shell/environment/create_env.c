@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 14:47:43 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/23 15:10:24 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:05:35 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**create_env(char **default_env)
 	line_index = 0;
 	while (default_env[line_index] != NULL)
 	{
-		new_env[line_index] = ft_strdup(default_env[line_index], FALSE);
+		new_env[line_index] = ft_strdup(default_env[line_index]);
 		line_index++;
 	}
 	new_env[line_index] = NULL;

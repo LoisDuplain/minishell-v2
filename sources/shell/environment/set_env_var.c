@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 20:18:51 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/05 15:10:41 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:06:16 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	set_env_var(t_shell *shell, char *key, char *value, t_bool free_value)
 	line_index = 0;
 	while (shell->env[line_index] != NULL)
 	{
-		new_env[line_index] = ft_strdup(shell->env[line_index], FALSE);
+		new_env[line_index] = ft_strdup(shell->env[line_index]);
 		line_index++;
 	}
 	if (value == NULL)
-		new_env[line_index] = ft_strdup(key, FALSE);
+		new_env[line_index] = ft_strdup(key);
 	else
 		new_env[line_index] = ft_append_strs(key,
 				ft_append_strs("=", value, FALSE, free_value),

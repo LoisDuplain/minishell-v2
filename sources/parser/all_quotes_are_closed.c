@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_str_array.c                                   :+:      :+:    :+:   */
+/*   all_quotes_are_closed.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 13:43:40 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 12:59:26 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/03 15:59:53 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/03 16:00:07 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	**copy_str_array(char **str_array)
+t_bool	all_quotes_are_closed(char *str)
 {
-	char	**new_array;
+	t_bool	is_open;
+	size_t	str_len;
 	size_t	index;
+	char	current_quote;
 
-	new_array = NULL;
+	is_open = FALSE;
+	str_len = ft_strlen(str);
 	index = 0;
-	while (str_array[index])
+	while (index < str_len)
 	{
-		new_array = ft_add_str_to_str_array(new_array,
-				ft_strdup(str_array[index]),
-				TRUE);
+		if (str[index] == '\'' || str[index] == '\"')
+		{
+			is_open = TRUE;
+			current_quote = str[index];
+			index++;
+			while (index < str_len && str[index] != current_quote)
+				index++;
+			if (str[index] == current_quote)
+				is_open = FALSE;
+		}
 		index++;
 	}
-	return (new_array);
+	return (!is_open);
 }

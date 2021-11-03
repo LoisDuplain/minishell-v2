@@ -44,22 +44,16 @@ Should	return:			salu"t	<- No NL
 
 TODO:
 
-#	Not interpret unclosed quotes or unspecified special characters like \ or ;.
-	---	TODO: Do a function who returns a boolean to check if all quotes are closed.
-
-#	Search and launch the right executable (based on the PATH variable or by using relative or absolute path)
-	--- TODO: Nothig to say.
-
 #	Quotes interpretations:
 		- ’ inhibit all interpretation of a sequence of characters.
 		-  " inhibit all interpretation of a sequence of characters except for $.
 	---	TODO: One thing to fix to print a dollar when there is no env var key after.
-		TODO: NOT ERRNO BUT EXIT STATUS
+		TODO: $? NOT ERRNO BUT EXIT STATUS
 #	Environment variables ($ followed by characters) should expand to their values.
 	---	TODO: One thing to fix to print a dollar when there is no env var key after.
-		TODO: NOT ERRNO BUT EXIT STATUS
+		TODO: $? NOT ERRNO BUT EXIT STATUS
 #	$? should expand to the exit status of the most recently executed foreground pipeline.
-	---	TODO: NOT ERRNO BUT EXIT STATUS
+	---	TODO: $? NOT ERRNO BUT EXIT STATUS
 
 #	Redirections:
 		- > should redirect output.	TODO: Test if no file is specified after redirection and if program doesnt have rights to write.
@@ -79,6 +73,12 @@ TODO:
 	---	TODO: Do shortcuts and test it.
 
 Done:
+
+#	Search and launch the right executable (based on the PATH variable or by using relative or absolute path)
+	--- Nothig to say.
+
+#	Not interpret unclosed quotes or unspecified special characters like \ or ;.
+	---	Do a function who returns a boolean to check if all quotes are closed.
 
 #	Not use more than one global variable, think about it and be ready to explain why you do it.
 	---	Global variables have been created for noobs.

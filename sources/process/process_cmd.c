@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,7 +7,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:41:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/28 13:25:15 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 12:32:22 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +56,11 @@ void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 			redir(STDOUT_FILENO, cmd[cmd_part_index], get_output_redirection_mode(cmd[cmd_part_index - 1]));
 		}
 		else */
-		if (ft_strcmp(cmd[cmd_part_index], "|") != 0)
+		// if (ft_strcmp(cmd[cmd_part_index], "|") != 0)
 			args = ft_add_str_to_str_array(args,
 					get_processed_arg(shell, cmd[cmd_part_index]), TRUE);
 		cmd_part_index++;
 	}
-	// TODO: Builtin or program
-	if (get_builtin(ft_tolower(args[0])) != NULL)
-		get_builtin(ft_tolower(args[0]))(shell, args);
-	// -----------------
+	execute_cmd(shell, args);
 	ft_destroy_string_array(&args);
 }

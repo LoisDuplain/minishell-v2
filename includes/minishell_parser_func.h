@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:45:31 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/19 13:42:09 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:00:49 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,11 @@ void	parse_redirection(t_cmd_builder *cmd_builder, char redirect);
 **	./parser/dispatch_parsing.c
 */
 void	dispatch_parsing(t_cmd_builder *cmd_builder, char current_char);
+
+/*
+**	Return TRUE if all quotes are correctly closed in str.
+**	./parser/all_quotes_are_closed.c
+*/
+t_bool	all_quotes_are_closed(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:48:50 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/27 15:12:35 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:55:05 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@
 /*
 **	END CUSTOM INCLUDES
 */
-
-/*
-**	Builtins can produce some errors, this function has been created to print
-**	it correctly.
-**	./builtin/put_builtin_error.c
-*/
-void	put_builtin_error(char *builtin, char *content, char *error);
 
 /*
 **	CD builtin.

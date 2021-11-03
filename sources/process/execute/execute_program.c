@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctostr.c                                        :+:      :+:    :+:   */
+/*   execute_program.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/15 17:25:31 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 13:01:19 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/03 14:14:59 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/03 15:58:18 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_ctostr(char c)
+void	execute_program(t_shell *shell, char *program_path, char **args)
 {
-	char	*result;
+	pid_t	pid;
+	int		status;
 
-	result = ft_strdup(" ");
-	if (result != NULL)
-		result[0] = c;
-	return (result);
+	pid = fork();
+	if (pid == -1)
+		put_error("minishell", "fork error", strerror(errno));
+	else if (pid > 0)
+		waitpid(pid, &status, 0);
+	else
+	{
+		if (execve(program_path, args, shell->env) == -1)
+			put_error("minishell", "execve error", strerror(errno));
+	}
+	errno = 0;
 }

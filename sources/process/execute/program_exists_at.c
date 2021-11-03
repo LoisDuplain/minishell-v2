@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_builtin_error.c                                :+:      :+:    :+:   */
+/*   program_exists_at.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 17:48:35 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 17:50:34 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/03 14:30:25 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/03 15:36:58 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	put_builtin_error(char *builtin, char *content, char *error)
+t_bool	program_exists_at(char *path, char *program)
 {
-	ft_putstr_err(builtin);
-	ft_putstr_err(": ");
-	ft_putstr_err(content);
-	ft_putstr_err(": ");
-	ft_putstr_errnl(error);
+	char		*full_path;
+	struct stat	buffer;
+	t_bool		result;
+
+	if (path == NULL)
+		full_path = program;
+	else
+		full_path = build_program_path(path, program);
+	result = stat(full_path, &buffer) == 0;
+	if (path != NULL)
+		free(full_path);
+	return (result);
 }

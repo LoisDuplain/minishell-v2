@@ -6,13 +6,13 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/28 14:23:44 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:53:22 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	preprocess_cmd(t_shell *shell, char ***cmds, size_t cmd_index)
+/* int	preprocess_cmd(t_shell *shell, char ***cmds, size_t cmd_index)
 {
 	int		count;
 	char	**cmd;
@@ -25,7 +25,7 @@ int	preprocess_cmd(t_shell *shell, char ***cmds, size_t cmd_index)
 		count += preprocess_cmd(shell, cmds, cmd_index + 1);
 	process_cmd(shell, cmd, cmd_size);
 	return (count);
-}
+} */
 
 void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder)
 {
@@ -40,12 +40,12 @@ void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder)
 	{
 		cmd = cmd_builder->cmds[cmd_index];
 		cmd_size = ft_get_string_array_length(cmd);
-		if (ft_strcmp(cmd[cmd_size - 1], "|") == 0)
+		/* if (ft_strcmp(cmd[cmd_size - 1], "|") == 0)
 			cmd_index += preprocess_cmd(shell, cmd_builder->cmds, cmd_index);
 		else
-		{
+		{ */
 			process_cmd(shell, cmd, cmd_size);
 			cmd_index++;
-		}
+		/* } */
 	}
 }

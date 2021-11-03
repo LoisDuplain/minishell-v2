@@ -103,12 +103,12 @@ re:		fclean all
 #	Clean old .o - list sources and headers - compile - run
 r:	oclean gmk all
 	@$(MAKE) oclean
-	./minishell
+	./$(NAME)
 
 #	Clean old .o - list sources and headers - compile - run with leaks command
 rl:	oclean gmk all
 	@$(MAKE) oclean
-	leaks --atExit -- ./minishell
+	leaks --atExit -- ./$(NAME)
 
 #	Check norminette
 norminette: clean

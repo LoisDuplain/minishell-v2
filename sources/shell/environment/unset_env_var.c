@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:16:22 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/24 15:46:20 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:06:29 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	unset_env_var(t_shell *shell, char *key)
 	{
 		if (line_index != (size_t) env_var_index)
 		{
-			new_env[new_index] = ft_strdup(shell->env[line_index], FALSE);
+			new_env[new_index] = ft_strdup(shell->env[line_index]);
 			new_index++;
 		}
 		line_index++;

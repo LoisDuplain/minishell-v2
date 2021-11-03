@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:35:00 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/05 15:45:02 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:57:27 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	export_builtin(t_shell *shell, char **cmd)
 			export_variable(shell, cmd[index]);
 		else
 		{
-			put_builtin_error("export", cmd[index], "not a valid identifier");
+			put_error("export", cmd[index], "not a valid identifier");
 			errno = 1;
 			return ;
 		}
