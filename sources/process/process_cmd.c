@@ -13,12 +13,40 @@
 
 #include "minishell.h"
 
-/* void	redir(int from, char *to, int mode)
+void	stop_redir(t_shell *shell)
+{
+	if (shell->fd_backup == -1)
+		return ;
+	dup2(shell->fd_backup, shell->fd_replaced);
+	close(shell->fd_backup);
+	shell->fd_backup = -1;
+	shell->fd_replaced = -1;
+}
+
+void	start_redir(t_shell *shell, int from_fd, int to_fd)
+{
+	shell->fd_replaced = from_fd;
+	shell->fd_backup = dup(from_fd);
+	dup2(to_fd, from_fd);
+	close(to_fd);
+}
+
+void	redir(t_shell *shell, int from_fd, char *to_file, int mode)
+{
+	int	to_fd;
+
+	to_fd = open(to_file, O_WRONLY | mode | O_CREAT, 0644);
+	if (to_fd == -1) // TODO: handle error
+		return ;
+	start_redir(shell, from_fd, to_fd);
+}
+
+/* void	redir(int from, char *to_file, int mode)
 {
 	int	to_fd;
 	int	backup_fd;
 
-	to_fd = open(to, O_WRONLY | mode | O_CREAT, 0644);
+	to_fd = open(to_file, O_WRONLY | mode | O_CREAT, 0644);
 	if (to_fd == -1) // TODO: handle error
 		return ;
 	backup_fd = dup(from);
@@ -29,6 +57,7 @@
 	dup2(backup_fd, from);
 	close(backup_fd);
 }
+*/
 
 int	get_output_redirection_mode(char *redirection)
 {
@@ -37,7 +66,7 @@ int	get_output_redirection_mode(char *redirection)
 	else if (ft_strcmp(redirection, ">") == 0)
 		return (O_TRUNC);
 	return (0);
-} */
+}
 
 void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 {
@@ -48,19 +77,19 @@ void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len)
 	cmd_part_index = 0;
 	while (cmd_part_index < cmd_len)
 	{
-		/* if (ft_strcmp(cmd[cmd_part_index], ">>") == 0 || ft_strcmp(cmd[cmd_part_index], ">") == 0)
+		if (ft_strcmp(cmd[cmd_part_index], ">>") == 0 || ft_strcmp(cmd[cmd_part_index], ">") == 0)
 		{
 			cmd_part_index++;
 			if (cmd_part_index >= cmd_len)
 				break ; // TODO: handle error
-			redir(STDOUT_FILENO, cmd[cmd_part_index], get_output_redirection_mode(cmd[cmd_part_index - 1]));
+			redir(shell, STDOUT_FILENO, cmd[cmd_part_index], get_output_redirection_mode(cmd[cmd_part_index - 1]));
 		}
-		else */
-		// if (ft_strcmp(cmd[cmd_part_index], "|") != 0)
+		else if (ft_strcmp(cmd[cmd_part_index], "|") != 0)
 			args = ft_add_str_to_str_array(args,
 					get_processed_arg(shell, cmd[cmd_part_index]), TRUE);
 		cmd_part_index++;
 	}
 	execute_cmd(shell, args);
+	stop_redir(shell);
 	ft_destroy_string_array(&args);
 }

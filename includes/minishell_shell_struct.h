@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:35:45 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 12:26:05 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:53:51 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct s_shell
 	char	*prompt;
 	char	*line;
 	char	**cmd;
+	int		pipe[2];
+	int		fd_backup;
+	int		fd_replaced;
 }	t_shell;
 
 /*
