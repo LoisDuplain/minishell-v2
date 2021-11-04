@@ -1,8 +1,8 @@
-#	Includes
+#	Makefile includes
 -include includes.mk
 -include sources.mk
 
-#	Names
+#	Program name
 NAME				=	minishell
 
 #	Colors
@@ -29,11 +29,11 @@ GCC					=	gcc
 FLAGS				=	-Wall -Wextra -Werror -O3 -Ofast -flto -march=native -ffast-math
 LIBFT_PATH			=	./libft
 
-# If brew formulae are not installed in the default folder on your computer, you can choose one
+# If brew formulae is not installed in the default folder on your computer, you can choose one
 # of these solutions:
 #
 # 1	-	Change the BREW_PATH variable value below
-# 2	-	Create a file called "brew.mk" in "minishell-v2" folder and write it into:
+# 2	-	Create a file called "brew.mk" in "minishell-v2" folder and write into:
 #		BREW_PATH = your custom brew formulaes path
 BREW_PATH			=	/usr/local/opt
 -include brew.mk
@@ -48,7 +48,7 @@ OBJS				=	$(SOURCES:.c=.o)
 all:	$(NAME)
 
 #	How to convert .c in .o
-%.o:	%.c $(LIBFT_PATH)/libft.a $(INCLUDES)
+%.o:	%.c $(INCLUDES)
 #	Compile
 	@$(GCC)																	\
 	$(FLAGS)																\
@@ -67,12 +67,12 @@ $(LIBFT_PATH)/libft.a:
 
 #	Compile minishell program
 $(NAME):	$(LIBFT_PATH)/libft.a $(INCLUDES) $(OBJS)
-#	Compile command
+#	Compile
 	@$(GCC)									\
+	$(FLAGS)								\
+	$(LIBFT_PATH)/libft.a					\
 	-L $(BREW_PATH)/readline/lib			\
 	-l readline.8.1							\
-	$(LIBFT_PATH)/libft.a					\
-	$(FLAGS)								\
 	-I $(INCLUDES_PATH)						\
 	-I $(BREW_INCLUDES_PATH)				\
 	$(OBJS)									\
