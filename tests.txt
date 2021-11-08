@@ -2,11 +2,6 @@
 
 
 
-
-
-
-
-
 -----	ERRORS		-----
 
 # Command:	echo .salut. ."bl'ur'p". .'bl"ur"p'. .'var -$USER- var'. ."var -$USER- var". .attention -$USER- attention. .errno:$?. .$?. .$?a. .$.
@@ -45,25 +40,17 @@ Should	return:			salu"t	<- No NL
 TODO:
 
 #	Quotes interpretations:
-		- ’ inhibit all interpretation of a sequence of characters.
-		-  " inhibit all interpretation of a sequence of characters except for $.
+		- ' inhibit all interpretation of a sequence of characters.
+		- " inhibit all interpretation of a sequence of characters except for $.
 	---	TODO: One thing to fix to print a dollar when there is no env var key after.
-		TODO: $? NOT ERRNO BUT EXIT STATUS
+		TODO: $? ERRNO AND EXIT STATUS
 #	Environment variables ($ followed by characters) should expand to their values.
 	---	TODO: One thing to fix to print a dollar when there is no env var key after.
-		TODO: $? NOT ERRNO BUT EXIT STATUS
+		TODO: $? ERRNO AND EXIT STATUS
 #	$? should expand to the exit status of the most recently executed foreground pipeline.
-	---	TODO: $? NOT ERRNO BUT EXIT STATUS
+	---	TODO: $? ERRNO AND EXIT STATUS
 
-#	Redirections:
-		- > should redirect output.	TODO: Test if no file is specified after redirection and if program doesnt have rights to write.
-		- “>>” should redirect output with append mode. TODO: Test if no file is specified after redirection and if program doesnt have rights to write.
-		
-		- < should redirect input.
-		- “<<” read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!
-		
-		- Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
-	---	TODO: Do input and pipes redirections and store backup_fd correctly.
+	TODO: Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
 
 #	Shortcuts:
 	- ctrl-C ctrl-D ctrl-\ should work like in bash.
@@ -99,36 +86,10 @@ Done:
 		- exit with no options
 	--- All is done.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#	Redirections:
+		- ">" should redirect output.	TODO: Test if program doesnt have rights to write.
+		- ">>" should redirect output with append mode. TODO: if program doesnt have rights to write.
+		
+		- "<" should redirect input.	TODO: Test if program doesnt have rights to read.
+		- "<<" read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!	TODO: Test if program doesnt have rights to write.
+	---	Redirect input or output.

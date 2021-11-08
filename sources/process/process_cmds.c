@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 11:53:22 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/08 14:35:44 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder)
 		else
 		{ */
 			process_cmd(shell, cmd, cmd_size);
+			stop_shell_redirection(&shell->out_redir);
+			stop_shell_redirection(&shell->in_redir);
 			cmd_index++;
 		/* } */
 	}

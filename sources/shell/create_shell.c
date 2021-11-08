@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:28:42 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 17:12:23 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/08 10:31:09 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ t_shell	*create_shell(char **env)
 	update_prompt(shell);
 	shell->line = NULL;
 	shell->cmd = NULL;
-	shell->fd_backup = -1;
-	shell->fd_replaced = -1;
+	shell->out_redir.fd_backup = -1;
+	shell->out_redir.fd_replaced = -1;
+	shell->in_redir.fd_backup = -1;
+	shell->in_redir.fd_replaced = -1;
 	return (shell);
 }

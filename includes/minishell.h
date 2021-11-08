@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/11/03 15:57:02 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/08 14:26:28 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # include "minishell_shell_struct.h"
 # include "minishell_cmd_builder_struct.h"
 
+# include "minishell_process_redirection_func.h"
 # include "minishell_process_execute_func.h"
 # include "minishell_builtin_func.h"
 # include "minishell_process_func.h"
@@ -86,6 +87,6 @@ void	exit_shell(t_shell *shell, char *message);
 **	Print an error.
 **  ./put_error.c
 */
-void	put_error(char *program, char *part1, char *part2);
+t_bool	put_error(char *program, char *part1, char *part2);
 
 #endif

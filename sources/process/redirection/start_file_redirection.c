@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_error.c                                        :+:      :+:    :+:   */
+/*   start_file_redirection.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 15:54:37 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/08 11:27:05 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/08 14:30:07 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/08 14:30:27 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	put_error(char *program, char *part1, char *part2)
+t_bool	start_file_redirection(t_shell_redir *shell_redir, char *file,
+		int mode, int to_replace)
 {
-	ft_putstr_err(program);
-	ft_putstr_err(": ");
-	ft_putstr_err(part1);
-	ft_putstr_err(": ");
-	ft_putstr_errnl(part2);
-	return (FALSE);
+	int	file_fd;
+
+	file_fd = open(file, mode, 0644);
+	if (file_fd == -1)
+		return (put_error("minishell", "file error", "can't open"));
+	start_shell_redirection(shell_redir, to_replace, file_fd);
+	return (TRUE);
 }
