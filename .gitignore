@@ -4,3 +4,4 @@ best-libft/
 *.a
 brew.mk
 minishell
+read_until_buffer
