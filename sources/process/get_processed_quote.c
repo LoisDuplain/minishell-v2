@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:47:54 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/27 14:10:53 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:29:25 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*get_processed_quote(t_shell *shell, char *arg,
 	(*i)++;
 	while (*i < arg_len && arg[*i] != quote)
 	{
-		if (arg[*i] == '$' && quote == '\"')
+		if (arg[*i] == '$' && quote == '\"'
+			&& (is_alphanumeric(arg[*i + 1]) || arg[*i + 1] == '?'))
 			result = append_env_var_to_str(shell, result,
 					get_env_var_name(arg, arg_len, i));
 		result = ft_append_char_to_str(result, arg[*i]);

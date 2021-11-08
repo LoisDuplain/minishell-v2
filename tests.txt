@@ -4,11 +4,6 @@
 
 -----	ERRORS		-----
 
-# Command:	echo .salut. ."bl'ur'p". .'bl"ur"p'. .'var -$USER- var'. ."var -$USER- var". .attention -$USER- attention. .errno:$?. .$?. .$?a. .$.
-
-	It returns:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. ..    <------
-Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. .$.
-
 
 
 
@@ -26,6 +21,13 @@ Should	return:			salut	<- NL
 
 	It returns:			salu"t	<- No NL
 Should	return:			salu"t	<- No NL
+
+-----------------------------------------
+
+# Command:	echo .salut. ."bl'ur'p". .'bl"ur"p'. .'var -$USER- var'. ."var -$USER- var". .attention -$USER- attention. .errno:$?. .$?. .$?a. .$. ".$."
+
+	It returns:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. .$. .$.
+Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- var. .attention -lduplain- attention. .errno:0. .0. .0a. .$. .$.
 
 
 

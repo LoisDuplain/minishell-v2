@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 16:03:37 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:37:23 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	parse(t_shell *shell)
 	}
 	next_cmd(cmd_builder);
 	display_cmd_builder(cmd_builder);
+	// TODO: dont execute here
 	process_cmds(shell, cmd_builder);
 	destroy_cmd_builder(&cmd_builder);
 }
