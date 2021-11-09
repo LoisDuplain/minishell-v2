@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_shell.c                                     :+:      :+:    :+:   */
+/*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 22:28:42 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 13:46:15 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 13:07:27 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 15:37:05 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_shell	create_shell(char **env)
+t_cmd	*create_cmd(size_t index, char **args)
 {
-	t_shell	shell;
+	t_cmd	*cmd;
 
-	shell.env = create_env(env);
-	set_env_var(&shell, "PWD", getcwd(NULL, 0), TRUE);
-	update_prompt(&shell);
-	init_cmd_container(&shell.cmd_container);
-	shell.out_redir.fd_backup = -1;
-	shell.out_redir.fd_replaced = -1;
-	shell.in_redir.fd_backup = -1;
-	shell.in_redir.fd_replaced = -1;
-	return (shell);
+	cmd = ft_calloc(1, sizeof(t_cmd));
+	if (cmd == NULL)
+		return (NULL);
+	cmd->index = index;
+	cmd->args = args;
+	cmd->size = ft_get_string_array_length(args);
+	cmd->prev = NULL;
+	cmd->next = NULL;
+	return (cmd);
 }

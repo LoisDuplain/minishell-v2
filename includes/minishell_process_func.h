@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:49:58 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/27 14:41:59 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:48:33 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 **	Process parsed commands.
 **	./process/process_cmds.c
 */
-void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder);
+void	process_cmds(t_shell *shell, t_cmd_container *cmd_container);
 
 /*
 **	Process parsed command.
 **	./process/process_cmd.c
 */
-void	process_cmd(t_shell *shell, char **cmd, size_t cmd_len);
+void	process_cmd(t_shell *shell, t_cmd *cmd);
 
 /*
 **	Get processed argument.

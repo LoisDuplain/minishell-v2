@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_shell_func.h                             :+:      :+:    :+:   */
+/*   minishell_cmd_func.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 22:34:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 12:51:15 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 13:11:54 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 14:01:05 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_SHELL_FUNC_H
-# define MINISHELL_SHELL_FUNC_H
+#ifndef MINISHELL_CMD_FUNC_H
+# define MINISHELL_CMD_FUNC_H
 
 /*
 **	START CUSTOM INCLUDES
@@ -24,27 +24,21 @@
 */
 
 /*
-**	Create new shell structure.
-**	./shell/create_shell.c
+**	Create cmd structure.
+**	./cmd/create_cmd.c
 */
-t_shell	create_shell(char **env);
+t_cmd	*create_cmd(size_t index, char **args);
 
 /*
-**	Destroy shell structure.
-**	./shell/destroy_shell.c
+**	Destroy cmd structure.
+**	./cmd/destroy_cmd_container.c
 */
-void	*destroy_shell(t_shell *shell);
+void	*destroy_cmd(t_cmd *cmd);
 
 /*
-**	Update prompt in shell structure.
-**	./shell/update_prompt.c
+**	Display cmd.
+**	./cmd/destroy_cmd_container.c
 */
-void	update_prompt(t_shell *shell);
-
-/*
-**	Free previous allocated line string and read the new one.
-**	./shell/set_line.c
-*/
-void	set_line(t_cmd_container *cmd_container, char *line);
+void	display_cmd(t_cmd *cmd);
 
 #endif

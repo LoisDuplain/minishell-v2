@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_shell.c                                     :+:      :+:    :+:   */
+/*   minishell_cmd_container_struct.h                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 22:28:42 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 13:46:15 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 12:02:05 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 13:21:13 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_CMD_CONTAINER_STRUCT_H
+# define MINISHELL_CMD_CONTAINER_STRUCT_H
 
-t_shell	create_shell(char **env)
+/*
+**	START CUSTOM INCLUDES
+*/
+
+# include "minishell.h"
+
+/*
+**	END CUSTOM INCLUDES
+*/
+
+/*
+**	START DEFINES
+*/
+
+typedef struct s_cmd_container
 {
-	t_shell	shell;
+	char	*line;
+	size_t	readed_index;
+	t_cmd	**cmds;
+	char	**cmd;
+	char	*cmd_part;
+}	t_cmd_container;
 
-	shell.env = create_env(env);
-	set_env_var(&shell, "PWD", getcwd(NULL, 0), TRUE);
-	update_prompt(&shell);
-	init_cmd_container(&shell.cmd_container);
-	shell.out_redir.fd_backup = -1;
-	shell.out_redir.fd_replaced = -1;
-	shell.in_redir.fd_backup = -1;
-	shell.in_redir.fd_replaced = -1;
-	return (shell);
-}
+/*
+**	END DEFINES
+*/
+
+#endif

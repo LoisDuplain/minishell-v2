@@ -6,48 +6,54 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/08 14:35:44 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:31:26 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* int	preprocess_cmd(t_shell *shell, char ***cmds, size_t cmd_index)
+/* size_t	preprocess_cmd(t_shell *shell, char ***cmds, size_t pipe_index)
 {
-	int		count;
+	size_t	count;
 	char	**cmd;
 	size_t	cmd_size;
 
 	count = 1;
-	cmd = cmds[cmd_index];
+	cmd = cmds[pipe_index];
 	cmd_size = ft_get_string_array_length(cmd);
-	if (ft_strcmp(cmd[cmd_size - 1], "|") == 0 && cmds[cmd_index + 1] != NULL)
-		count += preprocess_cmd(shell, cmds, cmd_index + 1);
+	if (pipe_index > 0)
+		start_shell_redirection(&shell->in_redir, STDIN_FILENO, shell->pipe[0]);
+	if (ft_strcmp(cmd[cmd_size - 1], "|") == 0 && cmds[pipe_index + 1] != NULL)
+		start_shell_redirection(&shell->out_redir, STDOUT_FILENO, shell->pipe[1]);
 	process_cmd(shell, cmd, cmd_size);
+	if (ft_strcmp(cmd[cmd_size - 1], "|") == 0 && cmds[pipe_index + 1] != NULL)
+		count += preprocess_cmd(shell, cmds, pipe_index + 1);
 	return (count);
 } */
 
-void	process_cmds(t_shell *shell, t_cmd_builder *cmd_builder)
+void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 {
-	size_t	cmd_index;
-	char	**cmd;
-	size_t	cmd_size;
+	t_cmd	*current;
 
-	if (get_cmds_length(cmd_builder) <= 0)
+	if (get_cmds_size(cmd_container) <= 0)
 		return ;
-	cmd_index = 0;
-	while (cmd_builder->cmds[cmd_index] != NULL)
+	current = cmd_container->cmds[0];
+	while (current != NULL)
 	{
-		cmd = cmd_builder->cmds[cmd_index];
-		cmd_size = ft_get_string_array_length(cmd);
 		/* if (ft_strcmp(cmd[cmd_size - 1], "|") == 0)
-			cmd_index += preprocess_cmd(shell, cmd_builder->cmds, cmd_index);
-		else
-		{ */
-			process_cmd(shell, cmd, cmd_size);
+		{
+			if (pipe(shell->pipe) == -1)
+				return ;
+			cmd_index += preprocess_cmd(shell, &cmd_builder->cmds[cmd_index], 0);
 			stop_shell_redirection(&shell->out_redir);
 			stop_shell_redirection(&shell->in_redir);
-			cmd_index++;
+		}
+		else
+		{ */
+			process_cmd(shell, current);
+			stop_shell_redirection(&shell->out_redir);
+			stop_shell_redirection(&shell->in_redir);
+			current = current->next;
 		/* } */
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:45:31 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 16:00:49 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 13:39:28 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,34 @@
 */
 
 /*
-**	Create new shell structure.
+**	Start command parsing.
 **	./parser/parse.c
 */
-void	parse(t_shell *shell);
-
-/*
-**	Parse quoted strings.
-**	./parser/parse_quote.c
-*/
-void	parse_quote(t_cmd_builder *cmd_builder, char quote);
-
-/*
-**	Parse piped command.
-**	./parser/parse_pipe.c
-*/
-void	parse_pipe(t_cmd_builder *cmd_builder);
-
-/*
-**	Parse redirected command.
-**	./parser/parse_redirection.c
-*/
-void	parse_redirection(t_cmd_builder *cmd_builder, char redirect);
+void	parse(t_cmd_container *cmd_container);
 
 /*
 **	Specify parsing method by the current_char.
 **	./parser/dispatch_parsing.c
 */
-void	dispatch_parsing(t_cmd_builder *cmd_builder, char current_char);
+void	dispatch_parsing(t_cmd_container *cmd_container, char current_char);
+
+/*
+**	Parse quoted strings.
+**	./parser/parse_quote.c
+*/
+void	parse_quote(t_cmd_container *cmd_container, char quote);
+
+/*
+**	Parse redirected command.
+**	./parser/parse_redirection.c
+*/
+void	parse_redirection(t_cmd_container *cmd_container, char redirect);
+
+/*
+**	Parse piped command.
+**	./parser/parse_pipe.c
+*/
+void	parse_pipe(t_cmd_container *cmd_container);
 
 /*
 **	Return TRUE if all quotes are correctly closed in str.

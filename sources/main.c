@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 15:58:31 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:35:00 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	t_shell	*shell;
+	t_shell			shell;
+	t_cmd_container	*cmd_container;
 
 	(void)argv;
 	shell = create_shell(env);
-	if (shell == NULL)
-		exit_shell(shell, "Shell creation failed.");
 	if (argc != 1)
-		exit_shell(shell, "Wrong number of arguments.");
+		exit_shell(&shell, "Wrong number of arguments.");
+	cmd_container = &shell.cmd_container;
 	signal(SIGINT, ctrl_c_signal);
 	signal(SIGQUIT, ctrl_backslash_signal);
 	while (TRUE)
 	{
-		set_line(shell, readline(shell->prompt));
-		if (shell->line == NULL)
-			exit_shell(shell, "Goodbye :)");
-		if (ft_strlen(shell->line) > 0)
+		set_line(cmd_container, readline(shell.prompt));
+		if (cmd_container->line == NULL)
+			exit_shell(&shell, "Goodbye :)");
+		if (ft_strlen(cmd_container->line) > 0)
 		{
-			add_history(shell->line);
-			parse(shell);
+			add_history(cmd_container->line);
+			parse(cmd_container);
+			process_cmds(&shell, cmd_container);
+			destroy_cmd_container(cmd_container);
 		}
 	}
 	return (0);

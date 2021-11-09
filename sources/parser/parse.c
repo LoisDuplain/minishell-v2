@@ -6,37 +6,28 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/08 16:37:23 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:32:35 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parse(t_shell *shell)
+void	parse(t_cmd_container *cmd_container)
 {
-	t_cmd_builder	*cmd_builder;
-	char			current_char;
+	size_t	line_length;
 
-	if (!all_quotes_are_closed(shell->line))
+	if (!all_quotes_are_closed(cmd_container->line))
 	{
-		put_error("minishell", "error", "unclosed quote detected.");
+		put_error("minishell", "error", "unclosed quote detected");
 		return ;
 	}
-	cmd_builder = create_cmd_builder(shell->line);
-	if (cmd_builder == NULL)
+	line_length = ft_strlen(cmd_container->line);
+	while (cmd_container->readed_index < line_length)
 	{
-		put_error("minishell", "error", "cmd_builder creation failed.");
-		return ;
+		dispatch_parsing(cmd_container,
+			cmd_container->line[cmd_container->readed_index]);
+		cmd_container->readed_index++;
 	}
-	while (cmd_builder->readed_index < ft_strlen(cmd_builder->line))
-	{
-		current_char = cmd_builder->line[cmd_builder->readed_index];
-		dispatch_parsing(cmd_builder, current_char);
-		cmd_builder->readed_index++;
-	}
-	next_cmd(cmd_builder);
-	display_cmd_builder(cmd_builder);
-	// TODO: dont execute here
-	process_cmds(shell, cmd_builder);
-	destroy_cmd_builder(&cmd_builder);
+	next_cmd(cmd_container);
+	display_cmd_container(cmd_container);
 }

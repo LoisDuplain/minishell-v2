@@ -1,43 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_cmd_builder_struct.h                     :+:      :+:    :+:   */
+/*   next_cmd_part.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 15:29:02 by lduplain          #+#    #+#             */
-/*   Updated: 2021/09/29 15:57:35 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 13:29:44 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 13:30:25 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_CMD_BUILDER_STRUCT_H
-# define MINISHELL_CMD_BUILDER_STRUCT_H
+#include "minishell.h"
 
-/*
-**	START CUSTOM INCLUDES
-*/
-
-# include "minishell.h"
-
-/*
-**	END CUSTOM INCLUDES
-*/
-
-/*
-**	START DEFINES
-*/
-
-typedef struct s_cmd_builder
+void	next_cmd_part(t_cmd_container *cmd_container)
 {
-	char	*line;
-	size_t	readed_index;
-	char	***cmds;
-	char	**cmd;
-	char	*cmd_part;
-}	t_cmd_builder;
-
-/*
-**	END DEFINES
-*/
-
-#endif
+	cmd_container->cmd = ft_add_str_to_str_array(cmd_container->cmd,
+			cmd_container->cmd_part, TRUE);
+	cmd_container->cmd_part = NULL;
+}

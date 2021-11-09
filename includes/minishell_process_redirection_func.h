@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:16:02 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/08 14:31:30 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:57:51 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	stop_shell_redirection(t_shell_redir *shell_redir);
 **	Execute the right redirection.
 **	./process/redirection/dispatch_redirection.c
 */
-t_bool	dispatch_redirection(t_shell *shell, char **cmd,
-			size_t cmd_len, size_t p_index);
+t_bool	dispatch_redirection(t_shell *shell, t_cmd *cmd, size_t arg_index);
 
 /*
 **	Read on STDIN and write result into "read_until_buffer"

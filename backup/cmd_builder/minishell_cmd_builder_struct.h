@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_shell_func.h                             :+:      :+:    :+:   */
+/*   minishell_cmd_builder_struct.h                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 22:34:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 12:51:15 by lduplain         ###   ########.fr       */
+/*   Created: 2021/09/29 15:29:02 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 12:01:33 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_SHELL_FUNC_H
-# define MINISHELL_SHELL_FUNC_H
+#ifndef MINISHELL_CMD_BUILDER_STRUCT_H
+# define MINISHELL_CMD_BUILDER_STRUCT_H
 
 /*
 **	START CUSTOM INCLUDES
@@ -24,27 +24,27 @@
 */
 
 /*
-**	Create new shell structure.
-**	./shell/create_shell.c
+**	START DEFINES
 */
-t_shell	create_shell(char **env);
+
+typedef struct s_cmd_container
+{
+	char	*line;
+	size_t	readed_index;
+	t_cmd	*cmds;
+}	t_cmd_container;
+
+/* typedef struct s_cmd_builder
+{
+	char	*line;
+	size_t	readed_index;
+	char	***cmds;
+	char	**cmd;
+	char	*cmd_part;
+}	t_cmd_builder; */
 
 /*
-**	Destroy shell structure.
-**	./shell/destroy_shell.c
+**	END DEFINES
 */
-void	*destroy_shell(t_shell *shell);
-
-/*
-**	Update prompt in shell structure.
-**	./shell/update_prompt.c
-*/
-void	update_prompt(t_shell *shell);
-
-/*
-**	Free previous allocated line string and read the new one.
-**	./shell/set_line.c
-*/
-void	set_line(t_cmd_container *cmd_container, char *line);
 
 #endif

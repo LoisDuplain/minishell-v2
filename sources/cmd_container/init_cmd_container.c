@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_shell.c                                     :+:      :+:    :+:   */
+/*   init_cmd_container.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 22:28:42 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 13:46:15 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 12:37:04 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 13:00:54 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_shell	create_shell(char **env)
+void	init_cmd_container(t_cmd_container *cmd_container)
 {
-	t_shell	shell;
-
-	shell.env = create_env(env);
-	set_env_var(&shell, "PWD", getcwd(NULL, 0), TRUE);
-	update_prompt(&shell);
-	init_cmd_container(&shell.cmd_container);
-	shell.out_redir.fd_backup = -1;
-	shell.out_redir.fd_replaced = -1;
-	shell.in_redir.fd_backup = -1;
-	shell.in_redir.fd_replaced = -1;
-	return (shell);
+	cmd_container->line = NULL;
+	cmd_container->readed_index = 0;
+	cmd_container->cmds = NULL;
+	cmd_container->cmd = NULL;
+	cmd_container->cmd_part = NULL;
 }

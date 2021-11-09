@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_redirection.c                                :+:      :+:    :+:   */
+/*   display_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 13:22:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 13:44:51 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 13:52:55 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 16:28:46 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parse_redirection(t_cmd_container *cmd_container, char redirect)
+void	display_cmd(t_cmd *cmd)
 {
-	next_cmd_part(cmd_container);
-	cmd_container->cmd_part = ft_append_char_to_str(
-			cmd_container->cmd_part, redirect);
-	if (cmd_container->line[cmd_container->readed_index + 1] == redirect)
+	size_t	cmd_part_index;
+
+	if (cmd == NULL)
+		return ;
+	ft_putstr("Command ");
+	ft_puti(cmd->index);
+	if (cmd->piped)
+		ft_putstr(" (piped)");
+	ft_putstr_nl(":");
+	if (cmd->args != NULL)
 	{
-		cmd_container->readed_index++;
-		cmd_container->cmd_part = ft_append_char_to_str(
-				cmd_container->cmd_part, redirect);
+		cmd_part_index = 0;
+		while (cmd->args[cmd_part_index] != NULL)
+		{
+			ft_puti(cmd_part_index);
+			ft_putstr(" - ");
+			ft_putstr_nl(cmd->args[cmd_part_index]);
+			cmd_part_index++;
+		}
 	}
-	next_cmd_part(cmd_container);
+	else
+		ft_putstr_nl("(null)");
 }
