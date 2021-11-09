@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 12:27:16 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 13:44:05 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:49:01 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ size_t	get_cmds_size(t_cmd_container *cmd_container);
 **	./cmd_container/next_cmd.c
 */
 void	next_cmd(t_cmd_container *cmd_container);
+
+/*
+**	Add a t_cmd slot in cmd_container->cmds array.
+**	./cmd_container/realloc_cmds.c
+*/
+t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 
 /*
 **	Append current cmd with current next part and set next to null.

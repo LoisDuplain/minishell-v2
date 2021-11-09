@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_cmd_container.c                            :+:      :+:    :+:   */
+/*   realloc_cmds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 13:40:45 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 16:52:10 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/09 16:41:20 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/09 16:46:55 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	display_cmd_container(t_cmd_container *cmd_container)
+t_cmd	**realloc_cmds(t_cmd_container *cmd_container)
 {
-	t_cmd	*current;
+	size_t	cmds_size;
+	t_cmd	**new_cmds;
+	size_t	index;
 
-	if (cmd_container->cmds == NULL)
-		return ;
-	current = cmd_container->cmds[0];
-	while (current != NULL)
+	cmds_size = get_cmds_size(cmd_container);
+	new_cmds = ft_calloc(cmds_size + 2, sizeof(t_cmd *));
+	if (new_cmds == NULL)
+		return (NULL);
+	index = 0;
+	while (index < cmds_size)
 	{
-		display_cmd(current);
-		current = current->next;
+		new_cmds[index] = cmd_container->cmds[index];
+		index++;
 	}
+	new_cmds[index + 1] = NULL;
+	return (new_cmds);
 }

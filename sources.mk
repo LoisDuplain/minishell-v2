@@ -15,6 +15,7 @@ SOURCES += sources/cmd_container/get_cmds_size.c
 SOURCES += sources/cmd_container/init_cmd_container.c
 SOURCES += sources/cmd_container/next_cmd.c
 SOURCES += sources/cmd_container/next_cmd_part.c
+SOURCES += sources/cmd_container/realloc_cmds.c
 SOURCES += sources/exit_shell.c
 SOURCES += sources/main.c
 SOURCES += sources/parser/all_quotes_are_closed.c
