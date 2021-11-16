@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:41:15 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 15:58:05 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:18:53 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	process_cmd(t_shell *shell, t_cmd *cmd)
 					get_processed_arg(shell, cmd->args[arg_index]), TRUE);
 		arg_index++;
 	}
-	execute_cmd(shell, args);
+	execute_cmd(shell, cmd);
 	ft_destroy_string_array(&args);
 }

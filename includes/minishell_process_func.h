@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:49:58 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 15:48:33 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:14:19 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 **	./process/process_cmds.c
 */
 void	process_cmds(t_shell *shell, t_cmd_container *cmd_container);
+
+/*
+**	Preprocess parsed commands.
+**	It checks if it's required to pipe and redirect command.
+**	./process/preprocess_cmd.c
+*/
+void	preprocess_cmd(t_shell *shell, t_cmd *cmd);
 
 /*
 **	Process parsed command.

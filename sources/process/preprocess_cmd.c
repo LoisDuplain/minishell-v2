@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_builtin.c                                    :+:      :+:    :+:   */
+/*   preprocess_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 12:38:47 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 15:59:17 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/16 15:12:58 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/16 15:13:25 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset_builtin(t_shell *shell, char **cmd)
+void	preprocess_cmd(t_shell *shell, t_cmd *cmd)
 {
-	size_t	index;
-
-	index = 1;
-	while (cmd[index] != NULL)
+	if (cmd->prev != NULL && cmd->prev->piped)
+		start_shell_redirection(&shell->in_redir, STDIN_FILENO,
+			cmd->prev->pipe[0]);
+	if (cmd->piped)
 	{
-		if (is_alpha(cmd[index][0]) || cmd[index][0] == '_')
-			unset_env_var(shell, cmd[index]);
-		else
-		{
-			put_error("export", cmd[index], "not a valid identifier");
-			errno = 1;
-			return ;
-		}
-		index++;
+		pipe(cmd->pipe);
+		start_shell_redirection(&shell->out_redir, STDOUT_FILENO, cmd->pipe[1]);
 	}
-	errno = 0;
 }

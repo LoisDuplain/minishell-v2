@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:16:02 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 14:31:17 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:28:58 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 **	Execute parsed and transormed cmd.
 **	./process/execute/execute_cmd.c
 */
-void	execute_cmd(t_shell *shell, char **args);
+void	execute_cmd(t_shell *shell, t_cmd *cmd);
 
 /*
 **	Execute a program.
 **	./process/execute/execute_program.c
 */
-void	execute_program(t_shell *shell, char *program_path, char **args);
+void	execute_program(t_shell *shell, char *program_path, t_cmd *cmd);
 
 /*
 **	Get full program by it's name.

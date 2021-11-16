@@ -59,7 +59,7 @@ TODO:
 #	$? should expand to the exit status of the most recently executed foreground pipeline.
 	---	TODO: $? ERRNO AND EXIT STATUS
 
-	TODO: Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
+	TODO: Run all pipes and wait all after.
 
 #	Shortcuts:
 	- ctrl-C ctrl-D ctrl-\ should work like in bash.
@@ -101,4 +101,7 @@ Done:
 		
 		- "<" should redirect input.	TODO: Test if program doesnt have rights to read.
 		- "<<" read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!	TODO: Test if program doesnt have rights to write.
+		
+		Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
+		
 	---	Redirect input or output.

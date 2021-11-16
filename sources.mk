@@ -33,6 +33,7 @@ SOURCES += sources/process/execute/program_exists_at.c
 SOURCES += sources/process/get_env_var_name.c
 SOURCES += sources/process/get_processed_arg.c
 SOURCES += sources/process/get_processed_quote.c
+SOURCES += sources/process/preprocess_cmd.c
 SOURCES += sources/process/process_cmd.c
 SOURCES += sources/process/process_cmds.c
 SOURCES += sources/process/redirection/dispatch_redirection.c

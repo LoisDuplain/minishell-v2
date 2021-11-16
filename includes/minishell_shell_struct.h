@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:35:45 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 12:46:43 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:42:56 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_shell
 	t_cmd_container	cmd_container;
 	t_shell_redir	out_redir;
 	t_shell_redir	in_redir;
+	int				exit_status;
 }	t_shell;
 
 /*

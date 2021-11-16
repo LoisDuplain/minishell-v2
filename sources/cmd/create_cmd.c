@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:07:27 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 15:37:05 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:41:09 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ t_cmd	*create_cmd(size_t index, char **args)
 	cmd->size = ft_get_string_array_length(args);
 	cmd->prev = NULL;
 	cmd->next = NULL;
+	cmd->pid = -1;
 	return (cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:59:10 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 16:26:03 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:40:48 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 	struct s_cmd	*next;
 	int				pipe[2];
+	pid_t			pid;
 }	t_cmd;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 15:35:00 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:51:02 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv, char **env)
 			exit_shell(&shell, "Goodbye :)");
 		if (ft_strlen(cmd_container->line) > 0)
 		{
+			shell.exit_status = 0;
 			add_history(cmd_container->line);
 			parse(cmd_container);
 			process_cmds(&shell, cmd_container);

@@ -6,37 +6,40 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:18:07 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 15:58:01 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:45:34 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execute_cmd(t_shell *shell, char **args)
+void	execute_cmd(t_shell *shell, t_cmd *cmd)
 {
 	char	*program;
 	char	*program_path;
 
-	program = ft_tolower(args[0]);
+	program = ft_tolower(cmd->args[0]);
 	if (get_builtin(program) != NULL)
-		get_builtin(program)(shell, args);
+	{
+		get_builtin(program)(shell, cmd->args);
+		shell->exit_status = errno;
+	}
 	else if (ft_contains_char(program, '/'))
 	{
 		if (program_exists_at(NULL, program))
-			 execute_program(shell, program, args);
+			execute_program(shell, program, cmd);
 		else
 			put_error("minishell", "no such file or directory",
-				args[0]);
+				cmd->args[0]);
 	}
 	else
 	{
-		program_path = get_program_path(shell, args[0]);
+		program_path = get_program_path(shell, cmd->args[0]);
 		if (program_path != NULL)
 		{
-			execute_program(shell, program_path, args);
+			execute_program(shell, program_path, cmd);
 			free(program_path);
 		}
 		else
-			put_error("minishell", "command not found", args[0]);
+			put_error("minishell", "command not found", cmd->args[0]);
 	}
 }
