@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:14:59 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/23 11:56:26 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 12:26:51 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	execute_program(t_shell *shell, char *program_path, t_cmd *cmd)
 		put_error("minishell", "fork error", strerror(errno));
 	else if (pid > 0)
 	{
-		// dprintf(1, "Wait2 %s\n", cmd->tokens[0]);
 		waitpid(pid, &status, 0);
-		// dprintf(1, "Waited2 %s\n", cmd->tokens[0]);
 	}
 	else
 	{
