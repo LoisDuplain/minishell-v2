@@ -7,6 +7,18 @@
 -     ecHo         a      -
 -     EcHo          a      -
 
+cat -e
+cat -e << rf
+cat -e < Makefile
+cat -e Makefile
+cat Makefile | wc -l
+cat Makefile << rf
+cat Makefile << rf | wc -l
+cat Makefile << rf | wc -l > a.txt
+cat Makefile << rf > a.txt | wc -l >> a.txt
+cat Makefile << rf > a.txt | grep "a" | wc -l >> a.txt
+cat Makefile << rf > a.txt | grep "a" < includes.mk | wc -l >> a.txt
+
 
 
 -----	ERRORS		-----
