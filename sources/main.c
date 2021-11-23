@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 15:51:02 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 09:54:42 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			shell.exit_status = 0;
 			add_history(cmd_container->line);
-			parse(cmd_container);
+			tokenize(cmd_container);
 			process_cmds(&shell, cmd_container);
 			destroy_cmd_container(cmd_container);
 		}

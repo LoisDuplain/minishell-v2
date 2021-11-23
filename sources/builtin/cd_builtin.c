@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 14:38:04 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 15:57:16 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:49:54 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	cd_builtin(t_shell *shell, char **cmd)
 	if (chdir(path) == -1)
 	{
 		put_error("cd", path, "No such file or directory");
-		errno = 1;
+		shell->exit_status = 1;
 	}
 	else
 	{
 		set_env_var(shell, "OLDPWD", old_pwd, FALSE);
 		update_prompt(shell);
-		errno = 0;
+		shell->exit_status = 0;
 	}
 	free(path);
 	free(old_pwd);

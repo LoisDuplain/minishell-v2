@@ -43,7 +43,6 @@ Should	return:			.salut. .bl'ur'p. .bl"ur"p. .var -$USER- var. .var -lduplain- v
 
 
 
-
 -----------------------------------------
 
 TODO:

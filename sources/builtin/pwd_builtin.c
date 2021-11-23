@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:28:43 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 15:57:36 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:55:31 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	pwd_builtin(t_shell *shell, char **args)
 	if (pwd == NULL)
 	{
 		put_error("pwd", "getcwd error", strerror(errno));
-		errno = 1;
+		shell->exit_status = 1;
 		return ;
 	}
 	ft_putstr_nl(pwd);
 	free(pwd);
-	errno = 0;
+	shell->exit_status = 0;
 }

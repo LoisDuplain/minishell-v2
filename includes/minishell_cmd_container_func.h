@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_container_func.h                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 12:27:16 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 16:49:01 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:04:36 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	next_cmd(t_cmd_container *cmd_container);
 t_cmd	**realloc_cmds(t_cmd_container *cmd_container);
 
 /*
-**	Append current cmd with current next part and set next to null.
-**	./cmd_container/next_cmd_part.c
+**	Append current tokens with current token and set next to null.
+**	./cmd_container/next_token.c
 */
-void	next_cmd_part(t_cmd_container *cmd_container);
+void	next_token(t_cmd_container *cmd_container);
 
 /*
 **	Display cmd container.

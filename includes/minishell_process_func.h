@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_process_func.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:49:58 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 15:14:19 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:06:05 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,16 @@
 */
 
 /*
-**	Process parsed commands.
+**	Process tokenized commands.
 **	./process/process_cmds.c
 */
 void	process_cmds(t_shell *shell, t_cmd_container *cmd_container);
 
 /*
-**	Preprocess parsed commands.
-**	It checks if it's required to pipe and redirect command.
-**	./process/preprocess_cmd.c
+**	Parse tokenized command.
+**	./process/parse_cmd.c
 */
-void	preprocess_cmd(t_shell *shell, t_cmd *cmd);
-
-/*
-**	Process parsed command.
-**	./process/process_cmd.c
-*/
-void	process_cmd(t_shell *shell, t_cmd *cmd);
+void	parse_cmd(t_shell *shell, t_cmd *cmd);
 
 /*
 **	Get processed argument.

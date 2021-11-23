@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_cmd_container.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 12:19:55 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 13:25:32 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:00:58 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	*destroy_cmd_container(t_cmd_container *cmd_container)
 		}
 		free(cmd_container->cmds);
 		cmd_container->cmds = NULL;
-		cmd_container->cmd = ft_destroy_string_array(&cmd_container->cmd);
-		free(cmd_container->cmd_part);
-		cmd_container->cmd_part = NULL;
+		cmd_container->tokens = ft_destroy_string_array(&cmd_container->tokens);
+		free(cmd_container->token);
+		cmd_container->token = NULL;
 	}
 	return (NULL);
 }

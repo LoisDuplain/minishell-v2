@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:38:47 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 15:59:17 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:55:21 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	unset_builtin(t_shell *shell, char **cmd)
 			unset_env_var(shell, cmd[index]);
 		else
 		{
-			put_error("export", cmd[index], "not a valid identifier");
-			errno = 1;
+			put_error("unset", cmd[index], "not a valid identifier");
+			shell->exit_status = 1;
 			return ;
 		}
 		index++;
 	}
-	errno = 0;
+	shell->exit_status = 0;
 }

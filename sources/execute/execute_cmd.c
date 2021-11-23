@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:18:07 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 16:45:34 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:01:28 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 
 	program = ft_tolower(cmd->args[0]);
 	if (get_builtin(program) != NULL)
-	{
 		get_builtin(program)(shell, cmd->args);
-		shell->exit_status = errno;
-	}
 	else if (ft_contains_char(program, '/'))
 	{
 		if (program_exists_at(NULL, program))
@@ -40,6 +37,9 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 			free(program_path);
 		}
 		else
+		{
 			put_error("minishell", "command not found", cmd->args[0]);
+			shell->exit_status = 127;
+		}
 	}
 }

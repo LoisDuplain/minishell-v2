@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/11/16 16:49:27 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/23 10:06:42 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@
 # include "minishell_cmd_func.h"
 # include "minishell_cmd_container_func.h"
 # include "minishell_process_redirection_func.h"
-# include "minishell_process_execute_func.h"
+# include "minishell_execute_func.h"
 # include "minishell_builtin_func.h"
 # include "minishell_process_func.h"
-# include "minishell_parser_func.h"
+# include "minishell_tokenizer_func.h"
 # include "minishell_signal_func.h"
 # include "minishell_shell_func.h"
 # include "minishell_shell_environment_func.h"

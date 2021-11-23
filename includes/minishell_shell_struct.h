@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_shell_struct.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:35:45 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 15:42:56 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:23:53 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,11 @@
 **	START DEFINES
 */
 
-typedef struct s_shell_redir
-{
-	int	fd_backup;
-	int	fd_replaced;
-}	t_shell_redir;
-
 typedef struct s_shell
 {
 	char			**env;
 	char			*prompt;
 	t_cmd_container	cmd_container;
-	t_shell_redir	out_redir;
-	t_shell_redir	in_redir;
 	int				exit_status;
 }	t_shell;
 

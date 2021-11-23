@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:35:00 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/03 15:57:27 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:53:16 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	export_variable(t_shell *shell, char *variable)
 	else
 		set_env_var(shell, key, &variable[equal_char_index + 1], FALSE);
 	free(key);
-	errno = 0;
+	shell->exit_status = 0;
 }
 
 static void	display_env_variables(t_shell *shell)
@@ -55,7 +55,7 @@ static void	display_env_variables(t_shell *shell)
 		index++;
 	}
 	ft_destroy_string_array(&sorted_env_variables);
-	errno = 0;
+	shell->exit_status = 0;
 }
 
 void	export_builtin(t_shell *shell, char **cmd)
@@ -72,7 +72,7 @@ void	export_builtin(t_shell *shell, char **cmd)
 		else
 		{
 			put_error("export", cmd[index], "not a valid identifier");
-			errno = 1;
+			shell->exit_status = 1;
 			return ;
 		}
 		index++;

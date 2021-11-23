@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:12:05 by lduplain          #+#    #+#             */
-/*   Updated: 2021/10/04 15:20:39 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:52:40 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	echo_builtin(t_shell *shell, char **cmd)
 	}
 	if (print_nl)
 		ft_putchar('\n');
-	errno = 0;
+	shell->exit_status = 0;
 }

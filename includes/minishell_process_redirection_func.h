@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_process_redirection_func.h               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:16:02 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 15:57:51 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:26:22 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	stop_shell_redirection(t_shell_redir *shell_redir);
 **	Execute the right redirection.
 **	./process/redirection/dispatch_redirection.c
 */
-t_bool	dispatch_redirection(t_shell *shell, t_cmd *cmd, size_t arg_index);
+t_bool	dispatch_redirection(t_cmd *cmd, size_t arg_index);
 
 /*
 **	Read on STDIN and write result into "read_until_buffer"

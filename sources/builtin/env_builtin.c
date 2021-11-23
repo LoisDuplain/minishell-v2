@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 13:12:08 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/16 15:58:39 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:52:51 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	env_builtin(t_shell *shell, char **cmd)
 			ft_putstr_nl(shell->env[index]);
 		index++;
 	}
-	errno = 0;
+	shell->exit_status = 0;
 }
