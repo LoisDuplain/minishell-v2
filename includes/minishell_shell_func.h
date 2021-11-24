@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_shell_func.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:34:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/09 12:51:15 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:00:31 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

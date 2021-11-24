@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 14:21:54 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:03:06 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argv;
 	shell = create_shell(env);
+	g_shell = &shell;
 	if (argc != 1)
 		exit_shell(&shell, "Wrong number of arguments.");
 	cmd_container = &shell.cmd_container;
@@ -35,7 +36,6 @@ int	main(int argc, char **argv, char **env)
 			if (!tokenize(cmd_container))
 				continue ;
 			process_cmds(&shell, cmd_container);
-			destroy_cmd_container(cmd_container);
 		}
 	}
 	return (0);

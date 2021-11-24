@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 22:35:45 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/22 18:23:53 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:04:50 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_shell
 	char			*prompt;
 	t_cmd_container	cmd_container;
 	int				exit_status;
+	t_bool			is_in_execution;
 }	t_shell;
 
 /*

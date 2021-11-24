@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 14:52:40 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:05:42 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	wait_pipeds(t_shell *shell, t_cmd *cmd)
 		waitpid(current->pid, &status, 0);
 		current = current->next;
 		if (!(current != NULL && (current->piped || current->prev->piped)
-			&& current->pid != -1))
+				&& current->pid != -1))
 			shell->exit_status = WEXITSTATUS(status);
 	}
 }
@@ -85,6 +85,7 @@ void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 
 	if (get_cmds_size(cmd_container) <= 0)
 		return ;
+	shell->is_in_execution = TRUE;
 	current = cmd_container->cmds[0];
 	while (current != NULL)
 	{
@@ -102,4 +103,6 @@ void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 			current = current->next;
 		}
 	}
+	shell->is_in_execution = FALSE;
+	destroy_cmd_container(cmd_container);
 }

@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/11/23 10:06:42 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:56:18 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@
 /*
 **  END CUSTOM INCLUDES	
 */
+
+t_shell	*g_shell;
 
 /*
 **  Main function.

@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 14:26:12 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:33:10 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ t_bool	tokenize(t_cmd_container *cmd_container)
 			cmd_container->line[cmd_container->readed_index]);
 		cmd_container->readed_index++;
 	}
-	next_cmd(cmd_container);
+	next_token(cmd_container);
+	if (cmd_container->tokens != NULL)
+		next_cmd(cmd_container);
 	display_cmd_container(cmd_container);
 	if (!all_cmds_are_filled(cmd_container))
 	{
