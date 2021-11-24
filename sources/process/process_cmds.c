@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 13:13:28 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:52:40 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	close_pipe(t_cmd *cmd)
 		close(cmd->pipe[0]);
 }
 
-void	open_pipe(t_cmd *cmd)
+void	open_piped_redirections(t_cmd *cmd)
 {
 	if (cmd->prev != NULL && cmd->prev->piped)
 		if (cmd->in_redir.fd_backup == -1)
@@ -27,8 +27,11 @@ void	open_pipe(t_cmd *cmd)
 	if (cmd->next != NULL && cmd->piped)
 		if (cmd->out_redir.fd_backup == -1)
 			dup2(cmd->pipe[1], 1);
-	close(cmd->pipe[0]);
-	close(cmd->pipe[1]);
+	if (cmd->piped)
+	{
+		close(cmd->pipe[0]);
+		close(cmd->pipe[1]);
+	}
 }
 
 void	wait_pipeds(t_shell *shell, t_cmd *cmd)
@@ -37,11 +40,13 @@ void	wait_pipeds(t_shell *shell, t_cmd *cmd)
 	int		status;
 
 	current = cmd;
-	while (current != NULL && current->piped && current->pid != -1)
+	while (current != NULL && (current->piped || current->prev->piped)
+		&& current->pid != -1)
 	{
 		waitpid(current->pid, &status, 0);
 		current = current->next;
-		if (!(current != NULL && current->piped && current->pid != -1))
+		if (!(current != NULL && (current->piped || current->prev->piped)
+			&& current->pid != -1))
 			shell->exit_status = WEXITSTATUS(status);
 	}
 }
@@ -51,21 +56,23 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 	t_cmd	*current;
 
 	current = cmd;
-	while (current != NULL && current->piped)
+	while (current != NULL && (current->piped || current->prev->piped))
 	{
-		if (pipe(current->pipe) == -1)
-			break ;
+		if (current->piped)
+			if (pipe(current->pipe) == -1)
+				break ;
 		current->pid = fork();
 		if (current->pid == -1)
 			put_error("minishell", "fork error", strerror(errno));
 		else if (current->pid == 0)
 		{
 			parse_cmd(shell, current);
-			open_pipe(current);
+			open_piped_redirections(current);
 			execute_cmd(shell, current);
 			exit(EXIT_SUCCESS);
 		}
-		close_pipe(current);
+		if (current->piped)
+			close_pipe(current);
 		current = current->next;
 	}
 	wait_pipeds(shell, cmd);

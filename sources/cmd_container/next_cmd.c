@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:15:08 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/23 10:04:50 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:12:49 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	next_cmd(t_cmd_container *cmd_container)
 	t_cmd	**new_cmds;
 
 	next_token(cmd_container);
-	if (cmd_container->tokens == NULL)
-		return ;
 	cmds_size = get_cmds_size(cmd_container);
 	new_cmds = realloc_cmds(cmd_container);
 	new_cmds[cmds_size] = create_cmd(cmds_size, cmd_container->tokens);

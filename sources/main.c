@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 13:06:35 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:21:54 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(cmd_container->line) > 0)
 		{
 			add_history(cmd_container->line);
-			tokenize(cmd_container);
+			if (!tokenize(cmd_container))
+				continue ;
 			process_cmds(&shell, cmd_container);
 			destroy_cmd_container(cmd_container);
 		}

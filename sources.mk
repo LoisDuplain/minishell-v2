@@ -18,6 +18,7 @@ SOURCES += sources/shell/environment/create_env.c
 SOURCES += sources/shell/environment/unset_env_var.c
 SOURCES += sources/shell/environment/set_env_var.c
 SOURCES += sources/shell/environment/get_env_var_index.c
+SOURCES += sources/tokenizer/all_cmds_are_filled.c
 SOURCES += sources/tokenizer/dispatch_tokenizing.c
 SOURCES += sources/tokenizer/tokenize_pipe.c
 SOURCES += sources/tokenizer/all_quotes_are_closed.c

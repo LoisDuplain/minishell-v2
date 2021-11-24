@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:45:31 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/23 09:57:54 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:21:38 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 **	Start line tokenizing.
 **	./tokenizer/tokenize.c
 */
-void	tokenize(t_cmd_container *cmd_container);
+t_bool	tokenize(t_cmd_container *cmd_container);
 
 /*
 **	Specify tokenizing method by the current_char.
@@ -58,5 +58,11 @@ void	tokenize_pipe(t_cmd_container *cmd_container);
 **	./tokenizer/all_quotes_are_closed.c
 */
 t_bool	all_quotes_are_closed(char *str);
+
+/*
+**	Return TRUE if all cmds are correctly filled.
+**	./tokenizer/all_cmds_are_filled.c
+*/
+t_bool	all_cmds_are_filled(t_cmd_container *cmd_container);
 
 #endif
