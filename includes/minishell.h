@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/11/24 15:56:18 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:07:23 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 
 # include "minishell_cmd_func.h"
 # include "minishell_cmd_container_func.h"
+# include "minishell_process_piped_func.h"
 # include "minishell_process_redirection_func.h"
 # include "minishell_execute_func.h"
 # include "minishell_builtin_func.h"

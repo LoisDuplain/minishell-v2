@@ -123,7 +123,7 @@ end:
 	@make fclean
 	@make gmk
 	@make all
-	@make norminette
+#	@make norminette
 	@make fclean
 	@printf "$(BLUE)$(NAME): $(LIGHT_CYAN)Prepared to be pushed.\n$(NO_COLOR)"
 

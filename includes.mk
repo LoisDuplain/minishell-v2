@@ -7,6 +7,7 @@ INCLUDES += ./includes/minishell_shell_struct.h
 INCLUDES += ./includes/minishell_shell_environment_func.h
 INCLUDES += ./includes/minishell_builtin_func.h
 INCLUDES += ./includes/minishell_cmd_struct.h
+INCLUDES += ./includes/minishell_process_piped_func.h
 INCLUDES += ./includes/minishell_process_func.h
 INCLUDES += ./includes/minishell_shell_func.h
 INCLUDES += ./includes/minishell_execute_func.h

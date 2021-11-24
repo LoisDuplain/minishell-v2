@@ -6,78 +6,11 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 16:05:42 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:14:19 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	close_pipe(t_cmd *cmd)
-{
-	close(cmd->pipe[1]);
-	if (cmd->piped && cmd->next == NULL)
-		close(cmd->pipe[0]);
-}
-
-void	open_piped_redirections(t_cmd *cmd)
-{
-	if (cmd->prev != NULL && cmd->prev->piped)
-		if (cmd->in_redir.fd_backup == -1)
-			dup2(cmd->prev->pipe[0], 0);
-	if (cmd->next != NULL && cmd->piped)
-		if (cmd->out_redir.fd_backup == -1)
-			dup2(cmd->pipe[1], 1);
-	if (cmd->piped)
-	{
-		close(cmd->pipe[0]);
-		close(cmd->pipe[1]);
-	}
-}
-
-void	wait_pipeds(t_shell *shell, t_cmd *cmd)
-{
-	t_cmd	*current;
-	int		status;
-
-	current = cmd;
-	while (current != NULL && (current->piped || current->prev->piped)
-		&& current->pid != -1)
-	{
-		waitpid(current->pid, &status, 0);
-		current = current->next;
-		if (!(current != NULL && (current->piped || current->prev->piped)
-				&& current->pid != -1))
-			shell->exit_status = WEXITSTATUS(status);
-	}
-}
-
-t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
-{
-	t_cmd	*current;
-
-	current = cmd;
-	while (current != NULL && (current->piped || current->prev->piped))
-	{
-		if (current->piped)
-			if (pipe(current->pipe) == -1)
-				break ;
-		current->pid = fork();
-		if (current->pid == -1)
-			put_error("minishell", "fork error", strerror(errno));
-		else if (current->pid == 0)
-		{
-			parse_cmd(shell, current);
-			open_piped_redirections(current);
-			execute_cmd(shell, current);
-			exit(EXIT_SUCCESS);
-		}
-		if (current->piped)
-			close_pipe(current);
-		current = current->next;
-	}
-	wait_pipeds(shell, cmd);
-	return (current);
-}
 
 void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 {
@@ -90,7 +23,7 @@ void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 	while (current != NULL)
 	{
 		if (current->piped)
-			current = process_piped(shell, current);
+			current = process_pipeds(shell, current);
 		else
 		{
 			if (current->prev != NULL && current->prev->piped)

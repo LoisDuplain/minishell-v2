@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ctrl_backslash_signal.c                            :+:      :+:    :+:   */
+/*   close_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/24 17:12:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 19:14:31 by lduplain         ###   ########.fr       */
+/*   Created: 2021/11/24 19:06:20 by lduplain          #+#    #+#             */
+/*   Updated: 2021/11/24 19:06:32 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ctrl_backslash_signal(int signal)
+void	close_pipe(t_cmd *cmd)
 {
-	(void)signal;
-	if (g_shell->is_in_execution)
-		ft_putstr_nl("Quit: 3");
-	else
-	{
-		rl_on_new_line();
-		rl_replace_line("  ", 0);
-		rl_redisplay();
-	}
+	close(cmd->pipe[1]);
+	if (cmd->piped && cmd->next == NULL)
+		close(cmd->pipe[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:14:59 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 15:53:49 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:36:11 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void	execute_program(t_shell *shell, char *program_path, t_cmd *cmd)
 {
 	int		status;
 
+	if (program_path == NULL)
+	{
+		put_error("minishell", "command not found", cmd->args[0]);
+		shell->exit_status = 127;
+		return ;
+	}
 	if (cmd->pid == -1)
 		cmd->pid = fork();
 	if (cmd->pid == -1)

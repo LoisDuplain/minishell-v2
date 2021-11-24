@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:18:07 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 10:17:29 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:33:12 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,7 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 	else
 	{
 		program_path = get_program_path(shell, cmd->args[0]);
-		if (program_path != NULL)
-		{
-			execute_program(shell, program_path, cmd);
-			free(program_path);
-		}
-		else
-		{
-			put_error("minishell", "command not found", cmd->args[0]);
-			shell->exit_status = 127;
-		}
+		execute_program(shell, program_path, cmd);
+		free(program_path);
 	}
 }
