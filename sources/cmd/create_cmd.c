@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:07:27 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/23 10:01:24 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 10:16:25 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_cmd	*create_cmd(size_t index, char **args)
 		return (NULL);
 	cmd->index = index;
 	cmd->tokens = args;
+	cmd->args = NULL;
 	cmd->size = ft_get_string_array_length(args);
 	cmd->prev = NULL;
 	cmd->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:18:07 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/23 15:01:56 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 10:17:29 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 	char	*program;
 	char	*program_path;
 
+	if (cmd->args == NULL)
+		return ;
 	program = ft_tolower(cmd->args[0]);
 	if (get_builtin(program) != NULL)
 		get_builtin(program)(shell, cmd->args);
