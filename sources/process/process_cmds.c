@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 10:17:04 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:13:28 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	open_pipe(t_cmd *cmd)
 	close(cmd->pipe[1]);
 }
 
-void	wait_pipeds(t_cmd *cmd)
+void	wait_pipeds(t_shell *shell, t_cmd *cmd)
 {
 	t_cmd	*current;
 	int		status;
@@ -41,6 +41,8 @@ void	wait_pipeds(t_cmd *cmd)
 	{
 		waitpid(current->pid, &status, 0);
 		current = current->next;
+		if (!(current != NULL && current->piped && current->pid != -1))
+			shell->exit_status = WEXITSTATUS(status);
 	}
 }
 
@@ -66,7 +68,7 @@ t_cmd	*process_piped(t_shell *shell, t_cmd *cmd)
 		close_pipe(current);
 		current = current->next;
 	}
-	wait_pipeds(cmd);
+	wait_pipeds(shell, cmd);
 	return (current);
 }
 
@@ -84,7 +86,8 @@ void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 		else
 		{
 			if (current->prev != NULL && current->prev->piped)
-				start_shell_redirection(&current->in_redir, STDIN_FILENO, current->prev->pipe[0]);
+				start_shell_redirection(&current->in_redir,
+					STDIN_FILENO, current->prev->pipe[0]);
 			parse_cmd(shell, current);
 			execute_cmd(shell, current);
 			stop_shell_redirection(&current->out_redir);

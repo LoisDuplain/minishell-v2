@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 16:38:04 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/21 19:18:44 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:10:37 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	ctrl_c_signal(int signal)
 	ft_putchar('\n');
 	rl_on_new_line();
 	rl_replace_line("", 0);
+	rl_redisplay();
 }

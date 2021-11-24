@@ -19,6 +19,9 @@ cat Makefile << rf > a.txt | wc -l >> a.txt
 cat Makefile << rf > a.txt | grep "a" | wc -l >> a.txt
 cat Makefile << rf > a.txt | grep "a" < includes.mk | wc -l >> a.txt
 
+cat includes.mk > a.txt | cat < b.txt > b.txt | echo "coucou"
+cat includes.mk > a.txt | cat > b.txt < b.txt | echo "coucou"
+
 
 
 -----	ERRORS		-----

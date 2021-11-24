@@ -6,7 +6,7 @@
 /*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:16:02 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/22 18:26:22 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/24 12:34:51 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ t_bool	read_until_keyword(char *keyword);
 **	./process/redirection/start_file_redirection.c
 */
 t_bool	start_file_redirection(t_shell_redir *shell_redir, char *file,
-		int mode, int to_replace);
+			int mode, int to_replace);
 
 #endif
