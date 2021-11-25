@@ -6,7 +6,7 @@
 /*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:08:20 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/25 12:59:07 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 13:44:09 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	exit_builtin_action(t_shell *shell, int exit_code)
 void	exit_builtin(t_shell *shell, char **args)
 {
 	size_t	args_size;
+	size_t	exit_code;
 
 	args_size = ft_get_string_array_length(args);
 	ft_putstr_errnl("exit");
@@ -31,7 +32,8 @@ void	exit_builtin(t_shell *shell, char **args)
 		exit_builtin_action(shell, 0);
 	else if (args_size >= 2)
 	{
-		if (!is_numberstr(args[1]))
+		exit_code = ft_atoll(args[1]);
+		if (errno == ERANGE || !is_numberstr(args[1]))
 		{
 			put_error("minishell", "exit", "numeric argument required");
 			exit_builtin_action(shell, 255);
@@ -39,6 +41,6 @@ void	exit_builtin(t_shell *shell, char **args)
 		if (args_size > 2)
 			put_error("minishell", "exit", "too many arguments");
 		else
-			exit_builtin_action(shell, ft_atoi(args[1]) % 256);
+			exit_builtin_action(shell, exit_code % 256);
 	}
 }
