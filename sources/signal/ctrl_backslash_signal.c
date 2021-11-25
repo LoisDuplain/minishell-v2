@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctrl_backslash_signal.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 17:12:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 19:14:31 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:06:56 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	ctrl_backslash_signal(int signal)
 		rl_on_new_line();
 		rl_replace_line("  ", 0);
 		rl_redisplay();
+		rl_replace_line("", 0);
 	}
 }
