@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_until_keyword.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:21:27 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/23 13:48:49 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:20:15 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

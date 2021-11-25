@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:59:57 by jcambaki          #+#    #+#             */
-/*   Updated: 2021/11/24 19:07:23 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:40:17 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		main(int argc, char **argv, char **env);
 **  Hard exit.
 **  ./exit_shell.c
 */
-void	exit_shell(t_shell *shell, char *message);
+void	exit_shell(t_shell *shell, char *message, int exit_code);
 
 /*
 **	Print an error.

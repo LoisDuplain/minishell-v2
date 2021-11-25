@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 15:21:19 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 16:03:06 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:41:02 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	shell = create_shell(env);
 	g_shell = &shell;
 	if (argc != 1)
-		exit_shell(&shell, "Wrong number of arguments.");
+		exit_shell(&shell, "Wrong number of arguments.", 1);
 	cmd_container = &shell.cmd_container;
 	signal(SIGINT, ctrl_c_signal);
 	signal(SIGQUIT, ctrl_backslash_signal);
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		set_line(cmd_container, readline(shell.prompt));
 		if (cmd_container->line == NULL)
-			exit_shell(&shell, "Goodbye :)");
+			exit_shell(&shell, "Goodbye :)", 0);
 		if (ft_strlen(cmd_container->line) > 0)
 		{
 			add_history(cmd_container->line);
