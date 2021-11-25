@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_pipeds.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 19:12:09 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 19:14:12 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 14:36:44 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

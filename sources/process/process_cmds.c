@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   process_cmds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:07:24 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 19:14:19 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 15:24:07 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	set_in_execution(t_shell *shell, t_bool state)
+{
+	shell->is_in_execution = state;
+	if (state)
+		signal(SIGQUIT, ctrl_backslash_signal);
+	else
+		signal(SIGQUIT, SIG_IGN);
+}
 
 void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 {
@@ -18,7 +27,7 @@ void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 
 	if (get_cmds_size(cmd_container) <= 0)
 		return ;
-	shell->is_in_execution = TRUE;
+	set_in_execution(shell, TRUE);
 	current = cmd_container->cmds[0];
 	while (current != NULL)
 	{
@@ -36,6 +45,6 @@ void	process_cmds(t_shell *shell, t_cmd_container *cmd_container)
 			current = current->next;
 		}
 	}
-	shell->is_in_execution = FALSE;
+	set_in_execution(shell, FALSE);
 	destroy_cmd_container(cmd_container);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lduplain < lduplain@student.42lyon.fr>     +#+  +:+       +#+        */
+/*   By: lduplain <lduplain@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:13:57 by lduplain          #+#    #+#             */
-/*   Updated: 2021/11/24 19:37:27 by lduplain         ###   ########.fr       */
+/*   Updated: 2021/11/25 15:05:09 by lduplain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_bool	tokenize(t_cmd_container *cmd_container)
 	next_token(cmd_container);
 	if (cmd_container->tokens != NULL)
 		next_cmd(cmd_container);
-	if (!all_cmds_are_filled(cmd_container))
+	if (!all_cmds_are_filled(cmd_container)
+		|| get_cmds_size(cmd_container) == 0)
 	{
 		destroy_cmd_container(cmd_container);
 		return (FALSE);
